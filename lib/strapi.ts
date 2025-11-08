@@ -45,14 +45,14 @@ export interface Project extends StrapiAttributes {
   id: number
   documentId: string
   title: string
+  slug: string
   description: string
-  image?: {
+  images?: {
     url: string
     alternativeText?: string
-  }
+  }[]
   link?: string
   order: number
-  active: boolean
 }
 
 export interface BlogPost extends StrapiAttributes {
@@ -68,8 +68,7 @@ export interface BlogPost extends StrapiAttributes {
   }
   content: string
   excerpt?: string
-  category?: string
-  published: boolean
+  tags?: string[]
 }
 
 export interface TeamMember extends StrapiAttributes {
@@ -164,7 +163,7 @@ export async function getInternshipBySlug(slug: string): Promise<Internship | nu
 // Project API calls
 export async function getProjects(): Promise<Project[]> {
   const response = await fetchAPI<StrapiResponse<Project[]>>(
-    '/projects?filters[active][$eq]=true&populate=*&sort=order:asc'
+    '/projects?populate=*&sort=order:asc'
   )
   return response.data || []
 }
@@ -179,7 +178,7 @@ export async function getProjectById(id: number): Promise<Project | null> {
 // Blog API calls
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const response = await fetchAPI<StrapiResponse<BlogPost[]>>(
-    '/blog-posts?filters[published][$eq]=true&populate=*&sort=publishedDate:desc'
+    '/blog-posts?populate=*&sort=publishedDate:desc'
   )
   return response.data || []
 }
