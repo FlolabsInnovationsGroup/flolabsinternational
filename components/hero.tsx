@@ -11,7 +11,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-[#222222]">
         {/* Very subtle background image - almost invisible like WordPress */}
         <Image 
-          src="/Frame-4.jpg" 
+          src="/Frame-3-5.jpg" 
           alt="Flo Labs Background"
           fill
           className="object-cover opacity-[0.08]"
