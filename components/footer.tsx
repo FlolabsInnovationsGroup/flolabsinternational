@@ -1,81 +1,112 @@
 import Link from 'next/link'
 import { Container } from './layout'
 
-const footerLinks = {
-  company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Blog', href: '/blogs' },
-    { name: 'Contact', href: '/contact' },
-  ],
-  opportunities: [
-    { name: 'Internships', href: '/internships' },
-    { name: 'Engineering', href: '/internships?category=Engineering' },
-    { name: 'Design', href: '/internships?category=Design' },
-    { name: 'Research', href: '/internships?category=Research' },
-  ],
-  resources: [
-    { name: 'Documentation', href: '#' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-  ],
-}
-
 export function Footer() {
   return (
     <footer className="bg-black">
       <Container>
         <div className="py-12 md:py-16">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <div className="col-span-2">
-              <Link href="/" className="flex items-center space-x-2 mb-4">
-                <span className="text-2xl font-bold text-white">
-                  Flolabs International
-                </span>
-              </Link>
-              <p className="text-sm text-white/80 mb-4 max-w-md">
-                Building the future through innovation in AI, robotics, and cutting-edge technology. 
-                Join our team and make an impact.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Flo Labs Section */}
+            <div>
+              <h3 className="font-semibold text-white mb-4 text-lg">Flo Labs</h3>
+              <div className="space-y-2">
+                <p>
+                  <a
+                    href="https://flomadlabs.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    A Flo Labs Company
+                  </a>
+                </p>
+                <p>
+                  <Link
+                    href="/privacy"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                </p>
+              </div>
             </div>
             
+            {/* Our Projects Section */}
             <div>
-              <h3 className="font-semibold text-white mb-3">Company</h3>
+              <h3 className="font-semibold text-white mb-4 text-lg">Our Projects</h3>
               <ul className="space-y-2">
-                {footerLinks.company.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/70 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <a
+                    href="https://www.caipo.ai/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    CAIPO
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.canva.com/design/DAGW8HnZilc/FiHkWHhXQkpkm5jcDU9fLA/view?utm_content=DAGW8HnZilc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h2e66e71997"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Moodchanger.ai
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.canva.com/design/DAGYja1TUd4/0uXWmOksp8B2tV22841r9g/view?utm_content=DAGYja1TUd4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hfe06cf52e4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Moodchanger for Pets
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.flomadtravel.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Flo Travel
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://flomadlabs.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Flo Labs R&D
+                  </a>
+                </li>
+                <li className="text-sm text-white/70">
+                  Flo Studios - Coming Soon
+                </li>
               </ul>
             </div>
             
+            {/* Follow Us Section */}
             <div>
-              <h3 className="font-semibold text-white mb-3">Opportunities</h3>
-              <ul className="space-y-2">
-                {footerLinks.opportunities.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/70 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="font-semibold text-white mb-4 text-lg">Follow Us</h3>
+              <a
+                href="https://www.linkedin.com/company/flomad-labs-r-d/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-white/70 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                LinkedIn
+              </a>
             </div>
-          </div>
-          
-          <div className="mt-12 border-t border-white/20 pt-8">
-            <p className="text-sm text-white/70 text-center">
-              © {new Date().getFullYear()} Flolabs International. All rights reserved.
-            </p>
           </div>
         </div>
       </Container>

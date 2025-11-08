@@ -41,7 +41,7 @@ export default async function ProjectsPage() {
                   key={project.id}
                   className="flo-card group hover:shadow-xl transition-all duration-300"
                 >
-                  <h3 className="text-2xl font-bold mb-4 text-[#0047AB] group-hover:text-[#003580] transition-colors">
+                  <h3 className="text-2xl font-bold mb-4 text-[#00349B] group-hover:text-[#002775] transition-colors">
                     {project.title}
                   </h3>
                   
@@ -55,7 +55,7 @@ export default async function ProjectsPage() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-[#0047AB] font-semibold hover:underline"
+                      className="inline-flex items-center gap-2 text-[#00349B] font-semibold hover:underline"
                     >
                       Learn More →
                     </a>
@@ -79,7 +79,7 @@ export default async function ProjectsPage() {
             </p>
             <Link
               href="/internships"
-              className="inline-block px-8 py-3 bg-white text-[#0047AB] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+              className="inline-block px-8 py-3 bg-white text-[#00349B] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
             >
               View Internship Opportunities
             </Link>

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container, Section } from './layout'
 
 interface Project {
@@ -14,13 +15,26 @@ interface ProjectsShowcaseProps {
   readonly projects: readonly Project[]
 }
 
+// Map project titles to their image filenames
+const projectImages: Record<string, string> = {
+  'MoodChanger': '/Frame-3-1.jpg',
+  'CAIPO': '/Frame-2-2.jpg',
+  'Flo Studios': '/Frame-4.jpg',
+  'Flo Travel': '/Frame-5-3.jpg',
+}
+
 export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
   return (
-    <Section className="flo-blue-section">
+    <Section className="flo-blue-section py-16">
       <Container>
+        {/* Title with white borders above and below - matching WordPress */}
         <div className="text-center mb-12">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">Our Projects</h3>
-          <p className="text-white/90 text-lg">
+          <div className="max-w-4xl mx-auto">
+            <div className="border-t-4 border-white mb-4"></div>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Projects</h3>
+            <div className="border-t-4 border-white mb-6"></div>
+          </div>
+          <p className="text-white text-lg">
             Check out our most exciting projects we&apos;ve going on right now.
           </p>
         </div>
@@ -35,7 +49,20 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flo-card group"
             >
-              <h4 className="text-xl font-bold mb-3 text-[#0047AB]">
+              {/* Project image at top */}
+              {projectImages[project.title] && (
+                <div className="mb-4 -mx-6 -mt-6">
+                  <Image
+                    src={projectImages[project.title]}
+                    alt={project.title}
+                    width={266}
+                    height={97}
+                    className="w-full h-auto"
+                  />
+                </div>
+              )}
+              
+              <h4 className="text-xl font-bold mb-3 text-[#00349B]">
                 {project.title}
               </h4>
               <div 
@@ -47,7 +74,7 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#0047AB] font-semibold text-sm hover:underline inline-flex items-center gap-1"
+                  className="text-[#00349B] font-semibold text-sm hover:underline inline-flex items-center gap-1"
                 >
                   Learn More →
                 </a>

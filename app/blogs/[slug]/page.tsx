@@ -93,7 +93,7 @@ export default async function BlogDetailPage(props: BlogDetailPageProps) {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 bg-blue-50 text-[#0047AB] text-sm font-medium rounded-full"
+                    className="px-4 py-2 bg-blue-50 text-[#00349B] text-sm font-medium rounded-full"
                   >
                     {tag}
                   </span>
@@ -117,7 +117,7 @@ export default async function BlogDetailPage(props: BlogDetailPageProps) {
         <Section className="bg-gray-50">
           <Container>
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-[#0047AB] mb-8">
+              <h2 className="text-3xl font-bold text-[#00349B] mb-8">
                 Related Articles
               </h2>
 
@@ -129,7 +129,7 @@ export default async function BlogDetailPage(props: BlogDetailPageProps) {
                     className="group"
                   >
                     <article className="flo-card h-full hover:shadow-xl transition-all duration-300">
-                      <h3 className="text-xl font-bold text-[#0047AB] group-hover:text-[#003580] transition-colors mb-3">
+                      <h3 className="text-xl font-bold text-[#00349B] group-hover:text-[#002775] transition-colors mb-3">
                         {relatedPost.title}
                       </h3>
                       <p className="text-gray-700 mb-3 line-clamp-2">
@@ -159,7 +159,7 @@ export default async function BlogDetailPage(props: BlogDetailPageProps) {
             </p>
             <Link
               href="/internships"
-              className="inline-block px-8 py-3 bg-white text-[#0047AB] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+              className="inline-block px-8 py-3 bg-white text-[#00349B] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
             >
               View Opportunities
             </Link>

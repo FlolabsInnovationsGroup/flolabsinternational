@@ -52,7 +52,7 @@ export default async function BlogsPage() {
                 >
                   <article className="flo-card h-full hover:shadow-xl transition-all duration-300">
                     <div className="mb-4">
-                      <h2 className="text-xl font-bold text-[#0047AB] group-hover:text-[#003580] transition-colors mb-3">
+                      <h2 className="text-xl font-bold text-[#00349B] group-hover:text-[#002775] transition-colors mb-3">
                         {post.title}
                       </h2>
                       <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
@@ -73,7 +73,7 @@ export default async function BlogsPage() {
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-blue-50 text-[#0047AB] text-xs rounded-full"
+                            className="px-3 py-1 bg-blue-50 text-[#00349B] text-xs rounded-full"
                           >
                             {tag}
                           </span>
@@ -104,7 +104,7 @@ export default async function BlogsPage() {
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900"
               />
-              <button className="px-6 py-3 bg-white text-[#0047AB] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+              <button className="px-6 py-3 bg-white text-[#00349B] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
                 Subscribe
               </button>
             </div>

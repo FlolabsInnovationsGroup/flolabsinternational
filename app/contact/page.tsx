@@ -31,7 +31,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-[#0047AB] mb-6">
+              <h2 className="text-3xl font-bold text-[#00349B] mb-6">
                 Contact Information
               </h2>
               
@@ -52,7 +52,7 @@ export default function ContactPage() {
                   <h3 className="font-semibold text-gray-900 mb-2">Internship Applications</h3>
                   <p className="text-gray-700">
                     Visit our{' '}
-                    <Link href="/internships" className="text-[#0047AB] hover:underline">
+                    <Link href="/internships" className="text-[#00349B] hover:underline">
                       Internships page
                     </Link>
                     {' '}to apply for specific positions
@@ -68,12 +68,12 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-12 p-6 bg-blue-50 rounded-lg">
-                <h3 className="font-semibold text-[#0047AB] mb-3">Quick Links</h3>
+                <h3 className="font-semibold text-[#00349B] mb-3">Quick Links</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link 
                       href="/internships" 
-                      className="text-gray-700 hover:text-[#0047AB] transition-colors flex items-center gap-2"
+                      className="text-gray-700 hover:text-[#00349B] transition-colors flex items-center gap-2"
                     >
                       → Browse Internship Opportunities
                     </Link>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                   <li>
                     <Link 
                       href="/projects" 
-                      className="text-gray-700 hover:text-[#0047AB] transition-colors flex items-center gap-2"
+                      className="text-gray-700 hover:text-[#00349B] transition-colors flex items-center gap-2"
                     >
                       → View Our Projects
                     </Link>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                   <li>
                     <Link 
                       href="/about" 
-                      className="text-gray-700 hover:text-[#0047AB] transition-colors flex items-center gap-2"
+                      className="text-gray-700 hover:text-[#00349B] transition-colors flex items-center gap-2"
                     >
                       → Learn About Flo Labs
                     </Link>
@@ -97,7 +97,7 @@ export default function ContactPage() {
                   <li>
                     <Link 
                       href="/blogs" 
-                      className="text-gray-700 hover:text-[#0047AB] transition-colors flex items-center gap-2"
+                      className="text-gray-700 hover:text-[#00349B] transition-colors flex items-center gap-2"
                     >
                       → Read Our Blog
                     </Link>
@@ -108,7 +108,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="flo-card">
-              <h2 className="text-2xl font-bold text-[#0047AB] mb-6">
+              <h2 className="text-2xl font-bold text-[#00349B] mb-6">
                 Send Us a Message
               </h2>
               
@@ -135,13 +135,13 @@ export default function ContactPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/internships"
-                className="px-8 py-3 bg-white text-[#0047AB] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                className="px-8 py-3 bg-white text-[#00349B] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
               >
                 Explore Internships
               </Link>
               <Link
                 href="/blogs"
-                className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#0047AB] transition-colors"
+                className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#00349B] transition-colors"
               >
                 Read Our Blog
               </Link>

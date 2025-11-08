@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Container, Section } from '@/components/layout'
-import { HubSpotForm } from '@/components/hubspot-form'
 import { Button } from '@/components/button'
 import Link from 'next/link'
 import { getInternshipBySlug, getInternships } from '@/lib/strapi'
@@ -51,183 +50,104 @@ export default async function InternshipPage(props: PageProps) {
     notFound()
   }
 
-  // Parse markdown bullet lists into arrays
-  const parseMarkdownList = (text: string | undefined): string[] => {
-    if (!text) return []
-    return text
-      .split('\n')
-      .map(line => line.replace(/^[-•]\s*/, '').trim())
-      .filter(line => line.length > 0)
+  // Convert array data to arrays if they're strings
+  const getArrayData = (data: string[] | string | undefined): string[] => {
+    if (!data) return []
+    if (Array.isArray(data)) return data
+    // If it's a string, try to parse it
+    return data.split('\n').map(line => line.trim()).filter(line => line.length > 0)
   }
 
-  const requirements = internship.requirements ? parseMarkdownList(internship.requirements) : []
-  const responsibilities = internship.responsibilities ? parseMarkdownList(internship.responsibilities) : []
+  const requirements = getArrayData(internship.requirements)
+  const responsibilities = getArrayData(internship.responsibilities)
 
   return (
     <>
-      {/* Hero Section */}
-      <Section className="flo-blue-section">
+      {/* Simple WordPress-style layout */}
+      <Section className="bg-white pt-24 pb-16">
         <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span
-                className={`px-3 py-1 rounded-full text-sm ${
-                  internship.status === 'Open'
-                    ? 'bg-green-500 text-white'
-                    : 'bg-gray-500 text-white'
-                }`}
-              >
-                {internship.status}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <article className="max-w-4xl mx-auto">
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
               {internship.title}
             </h1>
-            <p className="text-xl text-white/90 mb-6">
-              {internship.description?.substring(0, 160)}...
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-white/80">
-              {internship.location && (
-                <div className="flex items-center gap-2">
-                  <span>📍</span>
-                  <span>{internship.location}</span>
-                </div>
-              )}
-              {internship.duration && (
-                <div className="flex items-center gap-2">
-                  <span>⏱️</span>
-                  <span>{internship.duration}</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </Container>
-      </Section>
 
-      {/* Main Content */}
-      <Section className="bg-white">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Left Column - Details */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Description */}
-              <div>
-                <h2 className="text-2xl font-bold mb-4 text-[#0047AB]">
-                  About This Internship
-                </h2>
-                <p className="text-gray-700 leading-relaxed">{internship.description}</p>
+            {/* Overview */}
+            <div className="prose prose-lg max-w-none mb-8">
+              <p className="font-bold text-xl text-gray-900 mb-4">Overview</p>
+              <p className="text-gray-700 leading-relaxed">{internship.description}</p>
+            </div>
+
+            {/* Key Responsibilities */}
+            {responsibilities.length > 0 && (
+              <div className="mb-8">
+                <p className="font-bold text-xl text-gray-900 mb-4">Key Responsibilities</p>
+                <ul className="space-y-3 list-disc pl-6">
+                  {responsibilities.map((item) => (
+                    <li key={item} className="text-gray-700 leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            )}
 
-              {/* Responsibilities */}
-              {responsibilities.length > 0 && (
-                <div>
-                  <h2 className="text-2xl font-bold mb-4 text-[#0047AB]">
-                    Responsibilities
-                  </h2>
-                  <ul className="space-y-2">
-                    {responsibilities.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-[#0047AB] mt-1">✓</span>
-                        <span className="text-gray-700">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Requirements */}
-              {requirements.length > 0 && (
-                <div>
-                  <h2 className="text-2xl font-bold mb-4 text-[#0047AB]">
-                    Requirements
-                  </h2>
-                  <ul className="space-y-2">
-                    {requirements.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-[#0047AB] mt-1">•</span>
-                        <span className="text-gray-700">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Right Column - Application */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-8">
-                <div className="flo-card p-6">
-                  <h3 className="text-xl font-bold mb-4 text-[#0047AB]">
-                    Apply Now
-                  </h3>
-                  
-                  {internship.status === 'Open' ? (
-                    <>
-                      <p className="text-gray-700 text-sm mb-6">
-                        Ready to join our team? Fill out the application form below to get
-                        started.
-                      </p>
-                      
-                      {/* HubSpot Form */}
-                      {internship.hubspotFormId && (
-                        <HubSpotForm
-                          formId={internship.hubspotFormId}
-                          targetId={`internship-form-${internship.id}`}
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <div className="text-center py-8">
-                      <p className="text-gray-600 mb-4">
-                        This position is currently closed.
-                      </p>
-                      <Link href="/internships">
-                        <Button variant="outline">View Open Positions</Button>
-                      </Link>
-                    </div>
-                  )}
-                </div>
-
-                {/* Quick Info Card */}
-                            {/* Quick Info Card */}
-            <div className="bg-white rounded-lg shadow-lg p-6 sticky top-24">
-              <h3 className="text-xl font-bold mb-4 text-[#0047AB]">Quick Info</h3>
-              <dl className="space-y-4">
-                {internship.duration && (
-                  <div>
-                    <dt className="text-sm text-gray-600 mb-1">Duration</dt>
-                    <dd className="font-semibold text-gray-900">{internship.duration}</dd>
-                  </div>
-                )}
-                {internship.location && (
-                  <div>
-                    <dt className="text-sm text-gray-600 mb-1">Location</dt>
-                    <dd className="font-semibold text-gray-900">{internship.location}</dd>
-                  </div>
-                )}
-                <div>
-                  <dt className="text-sm text-gray-600 mb-1">Status</dt>
-                  <dd className="font-semibold text-gray-900">{internship.status}</dd>
-                </div>
-              </dl>
-            </div>
+            {/* Qualifications and Skills */}
+            {requirements.length > 0 && (
+              <div className="mb-8">
+                <p className="font-bold text-xl text-gray-900 mb-4">Qualifications and Skills</p>
+                <ul className="space-y-3 list-disc pl-6">
+                  {requirements.map((item) => (
+                    <li key={item} className="text-gray-700 leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
+            )}
 
-      {/* Related Internships */}
-      <Section className="bg-gray-50">
-        <Container>
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-[#0047AB] mb-4">
-              Other Open Positions
-            </h2>
-            <Link href="/internships">
-              <Button variant="outline">View All Internships</Button>
-            </Link>
-          </div>
+            {/* Why Join Us */}
+            <div className="mb-8">
+              <p className="font-bold text-xl text-gray-900 mb-4">Why Join Us?</p>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>Impactful & Innovative Work:</strong> Contribute to cutting-edge projects in AI, robotics, and technology that are shaping the future across multiple industries including education, healthcare, travel, space exploration, and more.
+              </p>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>Fully Remote & Flexible Schedule:</strong> This internship is entirely remote, allowing you to contribute from anywhere. You can choose to work full-time (up to 40 hours per week) or part-time (a minimum of 8-10 hours per week) based on your availability.
+              </p>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>On-site Internship (Optional):</strong> If interested, we can offer onsite internships at two locations: Austin, Texas, and Lemnos, Greece.
+              </p>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>Work on Advanced Technologies:</strong> Gain hands-on experience with state-of-the-art tools, frameworks, and methodologies in your field, working on real-world applications that make a difference.
+              </p>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>Interdisciplinary Collaboration:</strong> Work alongside experts from diverse fields including AI researchers, robotics engineers, data scientists, designers, and business strategists, expanding your professional network and skillset.
+              </p>
+              
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong>Professional Growth & Development:</strong> Build practical skills, contribute to research publications, and gain experience that will accelerate your career in technology and innovation.
+              </p>
+            </div>
+
+            {/* Application CTA */}
+            <div className="mt-12 p-8 bg-blue-50 rounded-lg border-2 border-[#00349B]">
+              <h3 className="text-2xl font-bold mb-4 text-[#00349B]">Ready to Apply?</h3>
+              <p className="text-gray-700 mb-6">
+                Join our team and help shape the future of AI and robotics. Fill out our application form to get started.
+              </p>
+              <Link href="/internships">
+                <Button className="bg-[#00349B] hover:bg-[#002775]">
+                  Apply Now →
+                </Button>
+              </Link>
+            </div>
+          </article>
         </Container>
       </Section>
     </>

@@ -1,46 +1,63 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Container, Section } from './layout'
 
 const methodologyItems = [
   {
     id: 1,
     title: 'Recorded Meetings',
-    description: 'All team meetings are recorded for reference and learning. Review discussions, catch up on missed sessions, and reinforce your understanding.',
+    description: 'We record and transcribe every meeting so you can easily review information when necessary.',
   },
   {
     id: 2,
     title: 'Brainwriting Exercises',
-    description: 'Collaborative ideation sessions where everyone contributes ideas in writing, fostering creativity and inclusive participation.',
+    description: 'Brain writing is an exercise to help the brain get into a creative and productive state.',
   },
   {
     id: 3,
     title: 'Advanced AI Tools',
-    description: 'Leverage cutting-edge Large Language Models (LLMs) and AI assistants to accelerate learning and problem-solving.',
+    description: 'Language Learning Models (LLMs) help automate workflow, brainstorm and advise work production.',
   },
   {
     id: 4,
     title: 'Industry Experts',
-    description: 'Learn directly from experienced professionals who bring real-world insights and mentorship to guide your development.',
+    description: 'Mentorship and guidance is provided through a variety of participants, advisors, and partners.',
   },
   {
     id: 5,
     title: 'Hands-on Projects',
-    description: 'Apply your knowledge through practical project work that builds your portfolio and demonstrates real-world skills.',
+    description: 'We work on interesting AI projects that create a better future for humanity.',
   },
 ]
 
 export function Methodology() {
   return (
-    <Section className="flo-blue-section">
+    <Section className="flo-blue-section py-16">
       <Container>
+        {/* Banner image at top */}
+        <div className="mb-12 -mx-4 md:mx-0">
+          <Image
+            src="/image-52-2-1024x266.jpg"
+            alt="Our methodology - collaborative learning"
+            width={1024}
+            height={266}
+            className="w-full h-auto rounded-lg"
+          />
+        </div>
+        
+        {/* Title with white borders */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Helping People Learn Better
-          </h2>
-          <p className="text-white/90 text-lg md:text-xl">
-            Our comprehensive methodology combines multiple approaches to maximize your learning experience.
+          <div className="max-w-4xl mx-auto">
+            <div className="border-t-4 border-white mb-4"></div>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              HELPING PEOPLE LEARN BETTER.
+            </h3>
+            <div className="border-t-4 border-white mb-6"></div>
+          </div>
+          <p className="text-white text-lg">
+            Our methodology is to foster collaboration and creativity.
           </p>
         </div>
         
@@ -54,10 +71,7 @@ export function Methodology() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flo-card text-center"
             >
-              <div className="mb-4 text-4xl font-bold text-[#0047AB]">
-                {item.id}
-              </div>
-              <h4 className="text-lg font-bold mb-3 text-[#0047AB]">
+              <h4 className="text-lg font-bold mb-3 text-[#00349B]">
                 {item.title}
               </h4>
               <p className="text-gray-700 text-sm leading-relaxed">

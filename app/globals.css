@@ -2,10 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --flo-blue: #0047AB;
-  --flo-blue-dark: #003580;
+  --foreground: #444444;
+  --flo-blue: #00349B;
+  --flo-blue-dark: #002775;
   --flo-blue-light: #E6F0FF;
+  --font-roboto: 'Roboto', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 @theme inline {
@@ -14,19 +16,27 @@
   --color-flo-blue: var(--flo-blue);
   --color-flo-blue-dark: var(--flo-blue-dark);
   --color-flo-blue-light: var(--flo-blue-light);
+  --font-family-sans: var(--font-roboto);
+  --font-family-heading: var(--font-poppins);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto);
   margin: 0;
   padding: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+}
+
 /* Flo Labs specific styles */
 .flo-blue-section {
-  background-color: var(--flo-blue);
+  /* EXACT WordPress blue gradient */
+  background: radial-gradient(circle, rgb(0, 99, 181) 55%, rgb(0, 39, 117) 100%);
   color: white;
 }
 

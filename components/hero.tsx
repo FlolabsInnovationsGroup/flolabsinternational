@@ -6,19 +6,19 @@ import { Container } from './layout'
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#222222] py-32 md:py-48 min-h-[70vh] flex items-center justify-center">
-      {/* Dark hero section matching WordPress */}
-      <div className="absolute inset-0 bg-[#222222]">
-        {/* Very subtle background image - almost invisible like WordPress */}
+    <section className="relative overflow-hidden bg-[#1a2847] py-32 md:py-48 min-h-[70vh] flex items-center justify-center">
+      {/* Blue hero section with visible world map - matching WordPress EXACTLY */}
+      <div className="absolute inset-0 bg-[#1a2847]">
+        {/* World map background - MORE VISIBLE like WordPress */}
         <Image 
           src="/Frame-3-5.jpg" 
           alt="Flo Labs Background"
           fill
-          className="object-cover opacity-[0.08]"
+          className="object-cover opacity-40"
           priority
         />
-        {/* Heavy dark gradient overlay matching WordPress */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50" />
+        {/* Lighter overlay to show the blue map pattern */}
+        <div className="absolute inset-0 bg-[#1a2847]/60" />
       </div>
       
       <Container className="relative z-10">
@@ -28,7 +28,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[#4A9EFF]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[#5ba3ff]">
               FLO LABS R&D
             </h1>
             

@@ -138,7 +138,7 @@ export async function getInternships(filters?: {
   status?: string
   search?: string
 }): Promise<Internship[]> {
-  let query = '/internships?populate=*'
+  let query = '/internships?populate=*&pagination[pageSize]=100'
   
   if (filters?.status) {
     query += `&filters[status][$eq]=${filters.status}`

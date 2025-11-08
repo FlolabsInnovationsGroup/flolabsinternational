@@ -11,7 +11,7 @@ const navigation = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header className="fixed top-0 z-50 w-full bg-black/80 backdrop-blur-sm border-b border-white/10">
       <Container>
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
@@ -20,7 +20,7 @@ export function Header() {
               alt="Flo Labs R&D International" 
               width={91}
               height={50}
-              className="h-12 w-auto"
+              className="h-10 w-auto object-contain"
               priority
             />
           </Link>
@@ -30,7 +30,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                className="text-sm font-medium text-white hover:text-blue-400 transition-colors"
               >
                 {item.name}
               </Link>

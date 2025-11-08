@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ 
+  weight: ['300', '400', '500', '700'],
+  subsets: ["latin"],
+  variable: '--font-roboto'
+});
+
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ["latin"],
+  variable: '--font-poppins'
+});
 
 export const metadata: Metadata = {
   title: "Flolabs International | Innovation in AI & Robotics",
@@ -20,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${roboto.variable} ${poppins.variable} font-sans`}>
         <Header />
         <main className="min-h-screen">
           {children}
