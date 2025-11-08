@@ -1,0 +1,42 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "copilot/inspect-website-for-identical-functionality",
+    "dependabot/npm_and_yarn/js-yaml-4.3.1",
+    "dependabot/npm_and_yarn/multi-cf5e9e9e14",
+    "dependabot/npm_and_yarn/nanoid-3.3.18",
+    "dependabot/npm_and_yarn/scripts/axios-1.16.0",
+    "dependabot/npm_and_yarn/scripts/form-data-4.0.6",
+    "dependabot/npm_and_yarn/scripts/undici-7.28.0",
+    "google-feature",
+    "main",
+    "mohamedabdelmohsen",
+    "vercel/react-server-components-cve-vu-yav2kv"
+  ],
+  "parent": {
+    "copilot/inspect-website-for-identical-functionality": "main",
+    "dependabot/npm_and_yarn/js-yaml-4.3.1": "main",
+    "dependabot/npm_and_yarn/multi-cf5e9e9e14": "main",
+    "dependabot/npm_and_yarn/nanoid-3.3.18": "main",
+    "dependabot/npm_and_yarn/scripts/axios-1.16.0": "main",
+    "dependabot/npm_and_yarn/scripts/form-data-4.0.6": "main",
+    "dependabot/npm_and_yarn/scripts/undici-7.28.0": "main",
+    "google-feature": "main",
+    "main": null,
+    "mohamedabdelmohsen": "main",
+    "vercel/react-server-components-cve-vu-yav2kv": "main"
+  },
+  "order": [
+    "main",
+    "copilot/inspect-website-for-identical-functionality",
+    "dependabot/npm_and_yarn/js-yaml-4.3.1",
+    "dependabot/npm_and_yarn/multi-cf5e9e9e14",
+    "dependabot/npm_and_yarn/nanoid-3.3.18",
+    "dependabot/npm_and_yarn/scripts/axios-1.16.0",
+    "dependabot/npm_and_yarn/scripts/form-data-4.0.6",
+    "dependabot/npm_and_yarn/scripts/undici-7.28.0",
+    "google-feature",
+    "mohamedabdelmohsen",
+    "vercel/react-server-components-cve-vu-yav2kv"
+  ]
+}
