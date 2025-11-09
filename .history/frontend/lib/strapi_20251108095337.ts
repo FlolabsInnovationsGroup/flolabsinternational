@@ -1,0 +1,221 @@
+// Strapi API Helper Functions
+// Based on official Strapi v5 documentation
+
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
+const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN
+
+interface StrapiResponse<T> {
+  data: T
+  meta?: {
+    pagination?: {
+      page: number
+      pageSize: number
+      pageCount: number
+      total: number
+    }
+  }
+}
+
+interface StrapiAttributes {
+  createdAt: string
+  updatedAt: string
+  publishedAt?: string
+}
+
+// Internship interface matching Strapi schema
+export interface Internship extends StrapiAttributes {
+  id: number
+  documentId: string
+  title: string
+  slug: string
+  status: 'Open' | 'Closed' | 'Filled'
+  location: string
+  duration?: string
+  description: string
+  requirements?: string
+  responsibilities?: string
+  hubspotFormId?: string
+  images?: {
+    url: string
+    alternativeText?: string
+  }[]
+}
+
+export interface Project extends StrapiAttributes {
+  id: number
+  documentId: string
+  title: string
+  slug: string
+  description: string
+  images?: {
+    url: string
+    alternativeText?: string
+  }[]
+  link?: string
+  order: number
+}
+
+export interface BlogPost extends StrapiAttributes {
+  id: number
+  documentId: string
+  title: string
+  slug: string
+  author: string
+  publishedDate: string
+  featuredImage?: {
+    url: string
+    alternativeText?: string
+  }
+  content: string
+  excerpt?: string
+  tags?: string[]
+}
+
+export interface TeamMember extends StrapiAttributes {
+  id: number
+  documentId: string
+  name: string
+  role: string
+  bio?: string
+  image?: {
+    url: string
+    alternativeText?: string
+  }
+  order: number
+}
+
+export interface Page extends StrapiAttributes {
+  id: number
+  documentId: string
+  title: string
+  slug: string
+  content: string
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+  }
+}
+
+// Generic fetch function
+async function fetchAPI<T>(
+  path: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const url = `${STRAPI_URL}/api${path}`
+  
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  if (options.headers) {
+    Object.assign(headers, options.headers)
+  }
+
+  if (STRAPI_TOKEN) {
+    headers['Authorization'] = `Bearer ${STRAPI_TOKEN}`
+  }
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      headers,
+      next: { revalidate: 60 }, // Revalidate every 60 seconds
+    })
+
+    if (!response.ok) {
+      throw new Error(`Strapi API error: ${response.status} ${response.statusText}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Strapi fetch error:', error)
+    throw error
+  }
+}
+
+// Internship API calls
+export async function getInternships(filters?: {
+  status?: string
+  search?: string
+}): Promise<Internship[]> {
+  let query = '/internships?populate=*'
+  
+  if (filters?.status) {
+    query += `&filters[status][$eq]=${filters.status}`
+  }
+  
+  if (filters?.search) {
+    query += `&filters[$or][0][title][$containsi]=${filters.search}`
+    query += `&filters[$or][1][description][$containsi]=${filters.search}`
+  }
+
+  const response = await fetchAPI<StrapiResponse<Internship[]>>(query)
+  return response.data || []
+}
+
+export async function getInternshipBySlug(slug: string): Promise<Internship | null> {
+  const response = await fetchAPI<StrapiResponse<Internship[]>>(
+    `/internships?filters[slug][$eq]=${slug}&populate=*`
+  )
+  return response.data?.[0] || null
+}
+
+// Project API calls
+export async function getProjects(): Promise<Project[]> {
+  const response = await fetchAPI<StrapiResponse<Project[]>>(
+    '/projects?populate=*&sort=order:asc'
+  )
+  return response.data || []
+}
+
+export async function getProjectById(id: number): Promise<Project | null> {
+  const response = await fetchAPI<StrapiResponse<Project>>(
+    `/projects/${id}?populate=*`
+  )
+  return response.data || null
+}
+
+// Blog API calls
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  const response = await fetchAPI<StrapiResponse<BlogPost[]>>(
+    '/blog-posts?filters[published][$eq]=true&populate=*&sort=publishedDate:desc'
+  )
+  return response.data || []
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const response = await fetchAPI<StrapiResponse<BlogPost[]>>(
+    `/blog-posts?filters[slug][$eq]=${slug}&populate=*`
+  )
+  return response.data?.[0] || null
+}
+
+// Team API calls
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  const response = await fetchAPI<StrapiResponse<TeamMember[]>>(
+    '/team-members?populate=*&sort=order:asc'
+  )
+  return response.data || []
+}
+
+// Page API calls
+export async function getPageBySlug(slug: string): Promise<Page | null> {
+  const response = await fetchAPI<StrapiResponse<Page[]>>(
+    `/pages?filters[slug][$eq]=${slug}&populate=*`
+  )
+  return response.data?.[0] || null
+}
+
+// Image URL helper
+export function getStrapiImageUrl(imageUrl?: string): string | null {
+  if (!imageUrl) return null
+  
+  // If already a full URL, return as-is
+  if (imageUrl.startsWith('http')) {
+    return imageUrl
+  }
+  
+  // Otherwise, prepend Strapi URL
+  return `${STRAPI_URL}${imageUrl}`
+}
+
