@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         hostname: 'strapi-production-7ecb.up.railway.app',
       },
       {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '1337',

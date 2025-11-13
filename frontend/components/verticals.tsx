@@ -25,7 +25,7 @@ export async function Verticals() {
               {vertical.icon && (
                 <div className="mb-4 -mx-6 -mt-6">
                   <Image
-                    src={`/${vertical.icon}`}
+                    src={vertical.icon.startsWith('http') ? vertical.icon : `/${vertical.icon}`}
                     alt={vertical.title}
                     width={266}
                     height={97}

@@ -24,7 +24,7 @@ export async function Benefits() {
               {benefit.icon && (
                 <div className="mb-4 -mx-6 -mt-6">
                   <Image
-                    src={`/${benefit.icon}`}
+                    src={benefit.icon.startsWith('http') ? benefit.icon : `/${benefit.icon}`}
                     alt={benefit.title}
                     width={266}
                     height={97}
