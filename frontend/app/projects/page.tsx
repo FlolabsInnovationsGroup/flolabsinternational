@@ -115,7 +115,7 @@ export default async function ProjectsPage() {
         <Container>
           <div className="max-w-6xl mx-auto">
             <Image
-              src="/Frame-2.jpg"
+              src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058524/Frame_2_8331c0cae3.jpg"
               alt="Students learning and working"
               width={1449}
               height={651}
@@ -141,7 +141,7 @@ export default async function ProjectsPage() {
         <Container>
           <div className="max-w-6xl mx-auto">
             <Image
-              src="/image-52-2.jpg"
+              src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058517/image_52_2_f28051fbde.jpg"
               alt="Our Tools - Technologies we use"
               width={1080}
               height={281}
@@ -162,19 +162,19 @@ export default async function ProjectsPage() {
             {/* Image Carousel from WordPress */}
             <InternshipCarousel
               images={[
-                { url: '/Frame-203.jpg', alternativeText: 'Frame 203' },
-                { url: '/13.png', alternativeText: '13' },
-                { url: '/14.png', alternativeText: '14' },
-                { url: '/15.png', alternativeText: '15' },
-                { url: '/12.png', alternativeText: '12' },
-                { url: '/11.png', alternativeText: '11' },
+                { url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058530/Frame_203_8b3ebacfbb.jpg', alternativeText: 'Frame 203' },
+                { url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058537/13_d4bb326e7c.png', alternativeText: '13' },
+                { url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058544/14_261199444b.png', alternativeText: '14' },
+                { url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058552/15_156b828e1e.png', alternativeText: '15' },
+                { url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058560/12_0356aae4fa.png', alternativeText: '12' },
+                { url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058568/11_082e0d104a.png', alternativeText: '11' },
               ]}
             />
 
             {/* Additional Image Below Carousel */}
             <div className="relative w-full max-w-2xl mx-auto mb-8">
               <Image
-                src="/Group-1.png"
+                src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058571/Group_1_b03a84fef5.png"
                 alt="Flo Labs Positions"
                 width={674}
                 height={649}

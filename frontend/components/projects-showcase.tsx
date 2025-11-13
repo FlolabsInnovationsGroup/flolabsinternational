@@ -23,13 +23,13 @@ interface ProjectsShowcaseProps {
 
 // Map project titles to their Cloudinary URLs for backwards compatibility
 const projectImages: Record<string, string> = {
-  'MoodChanger': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058552/15_156b828e1e.png',
-  'CAIPO': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058568/11_082e0d104a.png',
-  'Flo Studios': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058581/image_29_61ef8c56ae.png',
-  'Flo Travel': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058544/14_261199444b.png',
+  'MoodChanger': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058474/Frame_3_1_1f2c9d02e5.jpg',
+  'CAIPO': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058477/Frame_2_2_ed9cac15cc.jpg',
+  'Flo Studios': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058482/Frame_4_3f70d2d7b7.jpg',
+  'Flo Travel': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058486/Frame_5_3_d5c6b10f6d.jpg',
   'Flo Labs': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058521/image_1_3aafaed984.png',
   'Flo International': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058571/Group_1_b03a84fef5.png',
-  'MoodChanger for Pets': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058517/image_52_2_f28051fbde.jpg',
+  'MoodChanger for Pets': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058510/Frame_6_a6b734f16c.jpg',
   'Humanoid Robots': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058586/Frame_1_59_a1c07e5e10.png',
 }
 

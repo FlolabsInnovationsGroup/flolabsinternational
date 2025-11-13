@@ -29,7 +29,7 @@ export default async function AboutPage() {
       <Section className="relative py-24 md:py-32 min-h-[400px] flex items-center justify-center bg-[#222222]">
         <div className="absolute inset-0">
           <Image 
-            src="/Frame-3-5.jpg" 
+            src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058470/cropped_Frame_3_5_6196a31cc0.jpg" 
             alt="Flo Labs R&D" 
             fill
             className="object-cover opacity-[0.08]"
@@ -40,7 +40,7 @@ export default async function AboutPage() {
         <Container className="relative z-10">
           <div className="max-w-2xl mx-auto text-center">
             <Image 
-              src="/Frame-4.jpg" 
+              src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058482/Frame_4_3f70d2d7b7.jpg" 
               alt="Flo Labs Logo" 
               width={200}
               height={200}
