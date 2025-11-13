@@ -53,10 +53,10 @@ export default async function AboutPage() {
         </Container>
       </Section>
 
-      {/* Flo Labs R&D Title Box (white with blue border) */}
+      {/* Flo Labs R&D Title Box (white with blue gradient border - matching WordPress) */}
       <Section className="bg-white py-12">
         <Container>
-          <div className="max-w-4xl mx-auto border-4 border-[#00349B] p-8 text-center">
+          <div className="max-w-4xl mx-auto gradient-border-box p-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#00349B]">
               {aboutTitle?.title || 'Flo Labs R&D'}
             </h1>

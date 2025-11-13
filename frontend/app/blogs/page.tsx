@@ -17,15 +17,27 @@ export default async function BlogsPage() {
   
   return (
     <>
-      {/* Hero Section - Matching WordPress */}
-      <Section className="bg-white py-16">
+      {/* Hero Section - Matching WordPress exactly */}
+      <Section className="flo-blue-section py-24 md:py-32">
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
-              BLOGS
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Centered Logo */}
+            <div className="mb-12">
+              <Image
+                src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058482/Frame_4_3f70d2d7b7.jpg"
+                alt="Flo Labs Logo"
+                width={200}
+                height={200}
+                className="mx-auto"
+                priority
+              />
+            </div>
+
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+              Blogs
             </h1>
             
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-800">
+            <h2 className="text-2xl md:text-3xl font-normal mb-12 text-white/90">
               Explore Blogs on AI Breakthroughs, Internships & Emerging Tech Trends
             </h2>
 
@@ -40,10 +52,10 @@ export default async function BlogsPage() {
               />
             </div>
 
-            <div className="text-lg text-gray-700 leading-relaxed space-y-4">
+            <div className="text-lg text-white leading-relaxed space-y-4 max-w-4xl mx-auto">
               <p>
                 Welcome to Flo Labs R&D Blogs- your gateway to the world of AI innovation,{' '}
-                <Link href="/internships" className="text-[#00349B] hover:underline font-semibold">
+                <Link href="/internships" className="text-cyan-300 hover:underline font-semibold">
                   hands-on internships
                 </Link>
                 , and cutting-edge tech trends. Whether you&apos;re a student, professional, or tech enthusiast, our blogs are here to inform, inspire, and{' '}
@@ -51,7 +63,7 @@ export default async function BlogsPage() {
                   href="https://www.linkedin.com/pulse/tech-journey-beginners-guide-nouwen-mokua-7rpqf/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[#00349B] hover:underline font-semibold"
+                  className="text-cyan-300 hover:underline font-semibold"
                 >
                   power up your tech journey
                 </a>
@@ -62,8 +74,8 @@ export default async function BlogsPage() {
         </Container>
       </Section>
 
-      {/* Blog Posts List - Single Column like WordPress */}
-      <Section className="bg-gray-50">
+      {/* Blog Posts List - Matching WordPress single column layout */}
+      <Section className="bg-white py-16">
         <Container>
           {blogPosts.length === 0 ? (
             <div className="text-center py-12">
@@ -77,11 +89,11 @@ export default async function BlogsPage() {
           ) : (
             <div className="max-w-4xl mx-auto space-y-12">
               {blogPosts.map((post) => (
-                <article key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                  <Link href={`/blogs/${post.slug}`} className="group">
+                <article key={post.id} className="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300 border-b-2 border-gray-100 pb-8">
+                  <Link href={`/blogs/${post.slug}`} className="group block">
                     {/* Featured Image */}
                     {post.featuredImage && (
-                      <div className="relative w-full h-64 md:h-80">
+                      <div className="relative w-full h-64 md:h-80 mb-6 rounded-lg overflow-hidden">
                         <Image
                           src={getStrapiImageUrl(post.featuredImage.url) || ''}
                           alt={post.featuredImage.alternativeText || post.title}
@@ -91,14 +103,14 @@ export default async function BlogsPage() {
                       </div>
                     )}
                     
-                    <div className="p-8">
+                    <div className="space-y-4">
                       {/* Title */}
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#00349B] transition-colors mb-4 uppercase">
+                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-[#00349B] transition-colors">
                         {post.title}
                       </h2>
                       
                       {/* Meta */}
-                      <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                      <div className="flex items-center gap-3 text-sm text-gray-600">
                         <span className="font-medium">{post.author}</span>
                         <span>/</span>
                         <time dateTime={post.publishedDate}>
@@ -107,13 +119,13 @@ export default async function BlogsPage() {
                       </div>
 
                       {/* Excerpt */}
-                      <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                      <p className="text-gray-700 text-base leading-relaxed">
                         {post.excerpt}
                       </p>
 
                       {/* Tags */}
                       {post.tags && post.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 pt-2">
                           {post.tags.map((tag) => (
                             <span
                               key={tag}

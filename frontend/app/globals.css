@@ -57,8 +57,18 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   background: white;
   border-radius: 8px;
-  padding: 1.5rem;
-  border: 6px solid #0073e6;
+  padding: 2rem;
+  /* Create gradient border using box-shadow - matching WordPress */
+  border: 6px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 
+    0 0 0 6px white,
+    0 0 0 12px #0073e6,
+    0 0 0 13px #00bfff;
+  /* Alternative approach with gradient border */
+  border-image: linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1;
+  border-width: 6px;
+  border-style: solid;
 }
 
 /* HubSpot Form Styling */
