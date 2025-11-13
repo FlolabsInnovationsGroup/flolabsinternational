@@ -21,15 +21,15 @@ export default function InternshipsPage() {
   // Carousel images - matching WordPress
   const carouselImages = [
     {
-      url: '/image-33-e1731164191312.png',
+      url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058576/image_33_e1731164191312_538bdefbf7.png',
       alternativeText: 'Remote Internship Opportunities for Students'
     },
     {
-      url: '/image-29.png',
+      url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058581/image_29_61ef8c56ae.png',
       alternativeText: 'Remote Internship Opportunities for professionals across the globe'
     },
     {
-      url: '/Frame-1-59.png',
+      url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058586/Frame_1_59_a1c07e5e10.png',
       alternativeText: 'Hands-on robotics internship opportunity for remote learners'
     }
   ]
