@@ -22,11 +22,11 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Image 
-              src="/flo-labs-logo.jpg" 
+              src="/flo-labs-logo-new.svg" 
               alt="Flo Labs R&D International" 
-              width={91}
+              width={50}
               height={50}
-              className="h-10 w-auto object-contain"
+              className="h-12 w-auto object-contain"
               priority
             />
           </Link>

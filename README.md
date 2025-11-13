@@ -6,9 +6,9 @@
 
 A complete redesign of flolabs.international, moving from WordPress to a modern JAMstack architecture using Next.js 16, Strapi v5 (headless CMS), and PostgreSQL.
 
-**Live Site:** https://flolabsfrontend.vercel.app  
+**Live Site:** https://flolabsinternational.vercel.app (or custom domain TBD)
 **CMS Admin:** https://strapi-production-7ecb.up.railway.app/admin  
-**Original Site:** https://flomad.international (WordPress)
+**Original Site:** https://flolabs.international (WordPress - legacy)
 
 ## ✅ Current Status
 
@@ -34,7 +34,7 @@ A complete redesign of flolabs.international, moving from WordPress to a modern 
 - **Forms:** HubSpot Embedded Forms
 
 ### Backend & CMS
-- **CMS:** Strapi v5.30.1 (headless CMS)
+- **CMS:** Strapi v5.31.0 (headless CMS)
 - **Database:** PostgreSQL 16
 - **API:** RESTful API with Bearer token auth
 

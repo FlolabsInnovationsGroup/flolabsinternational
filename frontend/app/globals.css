@@ -56,18 +56,9 @@ h1, h2, h3, h4, h5, h6 {
 .gradient-border-box {
   position: relative;
   background: white;
-  border: 4px solid transparent;
-  background-clip: padding-box;
-}
-
-.gradient-border-box::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #0063B5 0%, #002775 100%);
-  margin: -4px;
-  z-index: -1;
-  border-radius: inherit;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 6px solid #0073e6;
 }
 
 /* HubSpot Form Styling */

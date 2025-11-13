@@ -1,10 +1,12 @@
 # Sync Missing Internships to Strapi
 
-## Problem
-- WordPress has **39 internships**
-- Strapi currently has **25 internships**
-- **14-20 internships are missing** from Strapi
-- Our Next.js site fetches from Strapi, so it only shows 25 internships
+## Problem (Historical - Now Resolved)
+- WordPress had **39 internships**
+- Initial Strapi migration had only **~25 internships**  
+- **~14 internships were missing** from Strapi
+- This script was used to sync the missing internships
+
+**Current Status**: All 39 internships are now in Strapi. This script is kept for reference/re-sync if needed.
 
 ## Solution
 Run the sync script to upload the missing internships from the static data file to Strapi.
@@ -104,8 +106,8 @@ node sync-missing-internships.js
 
 After running the script, verify the internships are in Strapi:
 
-1. Go to: https://strapi-production-7ecb.up.railway.app/admin/content-manager/collection-types/api::internship.internship
-2. You should now see **39 internships** (or close to it)
+1. Go to: <https://strapi-production-7ecb.up.railway.app/admin/content-manager/collection-types/api::internship.internship>
+2. You should now see **39 internships**
 
 Or check via API:
 ```bash

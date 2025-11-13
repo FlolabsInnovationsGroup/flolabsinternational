@@ -1,9 +1,9 @@
 # QA Checklist - Flo Labs Migration
 
 ## Deployment URLs
-- **New Site**: https://flolabsfrontend-18nomf3o6-flomad-dev.vercel.app
-- **Original Site**: https://flolabs.international
-- **Strapi CMS**: https://strapi-production-7ecb.up.railway.app
+- **New Site**: https://flolabsinternational.vercel.app
+- **Original Site**: https://flolabs.international (WordPress - legacy)
+- **Strapi CMS**: https://strapi-production-7ecb.up.railway.app/admin
 
 ## ✅ Content Migration Status
 
@@ -22,10 +22,10 @@
   
 - ✅ **Internships** (`/internships`) - List page with carousel
   - Hero carousel with 3 rotating images
-  - 47 internships displayed in grid
+  - 39 internships displayed in grid
   - Location and duration badges
   
-- ✅ **Internship Detail** (`/internships/[slug]`) - 47 dynamic pages
+- ✅ **Internship Detail** (`/internships/[slug]`) - 39 dynamic pages
   - Hero with status badge
   - Description section
   - Responsibilities list
@@ -58,18 +58,15 @@
 - ✅ **Contact** (`/contact`) - Contact form page
 
 ### Content Types
-- ✅ **Internships**: 47/47 imported from WordPress XML
+- ✅ **Internships**: 39/39 imported from WordPress
   - All fields mapped correctly
   - Requirements/responsibilities parsed as arrays
   - Status, location, duration displaying
   - HubSpot form IDs preserved
   
-- ✅ **Projects**: 4/4 created in Strapi
-  - MoodChanger
-  - CAIPO
-  - Flo Studios
-  - Flo Travel
-  - All with descriptions, links, order
+- ✅ **Projects**: 8/8 created in Strapi
+  - All projects migrated with descriptions, links, and display order
+  - Homepage shows selected projects via `showOnHomepage` flag
   
 - ✅ **Blog Posts**: 13/13 imported from WordPress
   - 5 published posts
@@ -129,7 +126,7 @@
 - ✅ Railway for Strapi + PostgreSQL
 - ✅ Environment variables configured
 - ✅ Build process optimized
-- ✅ 47 static pages generated
+- ✅ 39 internship static pages + 13 blog static pages generated
 
 ## ⚠️ Items Requiring Manual Testing
 
@@ -142,10 +139,8 @@
 
 ### Links to External Sites
 - ⚠️ **Verify all external links work**:
-  - MoodChanger: https://www.flomadlabs.com/moodchanger-people
-  - CAIPO: https://www.flomadlabs.com/caipo
-  - Flo Travel: https://www.flomadtravel.com/
-  - Flo Studios YouTube: https://www.youtube.com/@FlomadLabs
+  - Project external links (check each project's `link` field in Strapi)
+  - Social media links in footer
   - Parent company: https://flomadlabs.com/
 
 ### Email/Newsletter Forms
@@ -162,8 +157,8 @@
 
 ## 📊 Migration Statistics
 
-- **Total Pages Built**: 8 main pages + 47 internships + 13 blogs = **68 pages**
-- **Content Imported**: 47 internships + 4 projects + 13 blog posts = **64 items**
+- **Total Pages Built**: 8 main pages + 39 internships + 13 blogs = **60 pages**
+- **Content Imported**: 39 internships + 8 projects + 13 blog posts = **60 items**
 - **Images Uploaded**: 5 media files
 - **Build Time**: ~2-3 seconds
 - **Deployment**: Automated via Vercel

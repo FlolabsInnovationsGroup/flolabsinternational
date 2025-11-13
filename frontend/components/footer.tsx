@@ -88,8 +88,15 @@ export async function Footer() {
                     Flo Labs R&D
                   </a>
                 </li>
-                <li className="text-sm text-white/70">
-                  Flo Studios - Coming Soon
+                <li>
+                  <a
+                    href="https://www.flostudios.ai/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors"
+                  >
+                    Flo Studios
+                  </a>
                 </li>
               </ul>
             </div>

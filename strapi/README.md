@@ -48,7 +48,7 @@ node import-wordpress-to-strapi.js
 
 ### Access Admin Panel
 
-Visit http://localhost:1337/admin and login with your admin credentials.
+Visit <http://localhost:1337/admin> and login with your admin credentials.
 
 ### Content Types
 
@@ -60,7 +60,7 @@ Visit http://localhost:1337/admin and login with your admin credentials.
 
 ### For Non-Technical Editors
 
-1. **Login**: Go to http://localhost:1337/admin
+1. **Login**: Go to <http://localhost:1337/admin>
 2. **Navigate**: Click "Content Manager" in the left sidebar
 3. **Choose Content Type**: Click on Internships, Projects, or Blog Posts
 4. **Create Entry**: Click "+ Create new entry"

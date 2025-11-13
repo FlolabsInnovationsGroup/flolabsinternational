@@ -1,6 +1,6 @@
-# WordPress to Strapi Import Scripts
+# Strapi Data Management Scripts
 
-This directory contains scripts for importing WordPress content into your Railway Strapi instance.
+This directory contains scripts for managing content in your Railway Strapi instance.
 
 ## Prerequisites
 
@@ -8,119 +8,87 @@ This directory contains scripts for importing WordPress content into your Railwa
 
 ### Getting Your API Token
 
-1. Go to your Strapi admin panel: https://strapi-production-7ecb.up.railway.app/admin
-2. Navigate to **Settings** → **API Tokens** (in the left sidebar under "Global Settings")
+1. Go to your Strapi admin panel: <https://strapi-production-7ecb.up.railway.app/admin>
+2. Navigate to **Settings** → **API Tokens**
 3. Click **"Create new API Token"**
 4. Configure the token:
-   - **Name**: WordPress Import Script
-   - **Description**: Token for importing WordPress data
-   - **Token duration**: Unlimited (or set an expiration date)
+   - **Name**: Data Management Script
+   - **Description**: Token for data import/export
+   - **Token duration**: Unlimited
    - **Token type**: Full access
-5. Click **Save**
-6. **IMPORTANT**: Copy the token immediately - it will only be shown once!
+5. Click **Save** and copy the token immediately
 
 ## Setup
 
 1. Install dependencies:
+
 ```bash
 cd scripts
 npm install
 ```
 
 2. Set your API token as an environment variable:
+
 ```bash
 export STRAPI_API_TOKEN="your-token-here"
 ```
 
-Or create a `.env` file in the scripts directory:
-```
-STRAPI_API_TOKEN=your-token-here
-```
+Or create a `.env` file in the scripts directory.
 
-## Usage
+## Available Scripts
 
-### Import Internships from WordPress XML
+### Sync Missing Internships
 
 ```bash
-node import-wordpress-to-strapi.js /path/to/wordpress-export.xml
+node sync-missing-internships.js
 ```
 
-Or if the file is in the default location:
+**Note**: All 39 internships are now synced. This script is kept for reference. See `SYNC_INSTRUCTIONS.md` for detailed usage.
+
+### Create Projects
+
 ```bash
-node import-wordpress-to-strapi.js
+node create-projects.js
 ```
 
-The script will:
-- ✅ Parse the WordPress XML export
-- ✅ Extract internship posts (job listings, posts with "intern" in title)
-- ✅ Create entries in Strapi via the API
-- ✅ Skip duplicates (checks by slug)
-- ✅ Parse requirements and responsibilities from descriptions
-- ✅ Set appropriate status, location, and duration
-- ✅ Assign the HubSpot form ID for applications
+### Import Blog Posts
 
-### What Gets Imported
+```bash
+node import-blog-posts.js
+```
 
-For each internship, the script imports:
-- **Title**: Position name
-- **Slug**: URL-friendly identifier (auto-generated from title)
-- **Status**: Open/Closed based on WordPress post status
-- **Location**: Extracted from custom fields or defaults to "Remote"
-- **Duration**: Extracted from custom fields or defaults to "3-6 months"
-- **Description**: Main post content (cleaned HTML)
-- **Requirements**: Extracted from description or defaults provided
-- **Responsibilities**: Extracted from description or defaults provided
-- **HubSpot Form ID**: Pre-configured form for applications
+### Upload Images to Strapi
 
-## After Import
+```bash
+node upload-images-to-strapi.js
+```
 
-1. Visit your Strapi admin to review imported internships:
-   https://strapi-production-7ecb.up.railway.app/admin/content-manager/collection-types/api::internship.internship
+### Populate Homepage Sections
 
-2. Review each internship entry:
-   - ✏️ Edit descriptions for clarity
-   - ✏️ Add or refine requirements and responsibilities
-   - 🖼️ Add images if needed
-   - ✅ Verify status is correct (Open/Closed/Filled)
+```bash
+node populate-homepage-sections.js
+```
 
-3. Check the live website:
-   https://flolabsfrontend-64o8dn9tz-flomad-dev.vercel.app/internships
+### Populate About Page
 
-## Troubleshooting
+```bash
+node populate-about-page.js
+```
 
-### "STRAPI_API_TOKEN environment variable is required"
-- Make sure you've set the token: `export STRAPI_API_TOKEN="your-token"`
-- Or add it to a `.env` file in the scripts directory
+### Set Strapi Permissions
 
-### "XML file not found"
-- Check the file path is correct
-- The default path is: `/Users/elizabethstein/Downloads/flolabsrampdinternational.WordPress.2025-11-07.xml`
-- Pass a custom path: `node import-wordpress-to-strapi.js /path/to/file.xml`
+```bash
+node set-strapi-permissions.js
+```
 
-### "Failed to create internship: HTTP 401"
-- Your API token is invalid or expired
-- Create a new token in Strapi admin
+## Removed Scripts
 
-### "Failed to create internship: HTTP 403"
-- Your API token doesn't have sufficient permissions
-- Create a new token with "Full access" permission type
+The following scripts were used during migration and have been removed:
 
-### No internships found in XML
-- The script looks for posts with type `job_listing` or `internship`
-- Or posts with "intern" in the title
-- Check the console output to see what post types were found
-- You may need to adjust the filter logic in the script
+- `import-wordpress-to-strapi.js`
+- `check-internships.js`, `compare-internships.js`, `check-projects.js`
+- `clear-projects-db.js`, `delete-null-projects.js`
+- `fix-homepage-flags.js`, `publish-all-projects.js`
+- `set-homepage-projects.js`, `update-*.js`
 
-## Notes
-
-- The script includes automatic rate limiting (500ms between requests) to avoid overwhelming the API
-- Duplicate entries (by slug) are automatically skipped
-- Failed imports are logged but don't stop the entire process
-- The script outputs a summary at the end showing success/skip/failure counts
-
-## Support
-
-If you encounter issues:
-1. Check the console output for detailed error messages
-2. Verify your API token is valid and has full access
-3. Test the Strapi API manually: `curl https://strapi-production-7ecb.up.railway.app/api/internships -H "Authorization: Bearer YOUR_TOKEN"`
+These are preserved in git history if needed.

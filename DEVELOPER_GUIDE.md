@@ -4,7 +4,7 @@
 
 ### Tech Stack
 - **Frontend**: Next.js 16 (App Router), React 19, TypeScript 5, Tailwind CSS 4
-- **Backend CMS**: Strapi v5.30.1 (Headless CMS)
+- **Backend CMS**: Strapi v5.31.0 (Headless CMS)
 - **Database**: PostgreSQL 16 on Railway
 - **Hosting**: 
   - Frontend: Vercel
@@ -516,7 +516,7 @@ npm run lint
 
 - **Repository**: https://github.com/FlomadLabsRD/flolabsinternational
 - **Strapi Admin**: https://strapi-production-7ecb.up.railway.app/admin
-- **Production Site**: https://flolabsfrontend-18nomf3o6-flomad-dev.vercel.app
+- **Production Site**: https://flolabsinternational.vercel.app
 - **Issues**: Create GitHub issue for bugs/features
 
 ---

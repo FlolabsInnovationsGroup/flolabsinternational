@@ -6,7 +6,7 @@ This guide will help you manage content on the Flo Labs International website us
 
 ## 🔑 Logging In
 
-1. Go to: `https://strapi-production-7ecb.up.railway.app/admin`
+1. Go to: <https://strapi-production-7ecb.up.railway.app/admin>
 2. Enter your email and password
 3. Click "Sign in"
 

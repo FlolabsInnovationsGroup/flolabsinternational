@@ -4,7 +4,7 @@ Follow these 4 simple steps to import your WordPress internships into Strapi.
 
 ## Step 1: Get Your API Token
 
-1. Open Strapi admin: https://strapi-production-7ecb.up.railway.app/admin
+1. Open Strapi admin: <https://strapi-production-7ecb.up.railway.app/admin>
 2. Click **Settings** in the left sidebar
 3. Under "Global Settings", click **API Tokens**
 4. Click **"Create new API Token"**
@@ -40,8 +40,8 @@ The script will show a summary like:
 ```
 
 Then check your live site:
-- **Strapi Admin**: https://strapi-production-7ecb.up.railway.app/admin/content-manager/collection-types/api::internship.internship
-- **Live Website**: https://flolabsfrontend-64o8dn9tz-flomad-dev.vercel.app/internships
+- **Strapi Admin**: <https://strapi-production-7ecb.up.railway.app/admin/content-manager/collection-types/api::internship.internship>
+- **Live Website**: <https://flolabsinternational.vercel.app/internships>
 
 ---
 
