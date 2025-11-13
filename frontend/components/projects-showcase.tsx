@@ -33,9 +33,10 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
   const getProjectImageUrl = (project: Project): string => {
     const firstImage = project.images?.[0];
     if (firstImage?.url) {
-      return firstImage.url.startsWith('http') 
+      const imageUrl = firstImage.url.startsWith('http') 
         ? firstImage.url 
         : getStrapiImageUrl(firstImage.url);
+      return imageUrl || '';
     }
     return projectImages[project.title] || '';
   };
