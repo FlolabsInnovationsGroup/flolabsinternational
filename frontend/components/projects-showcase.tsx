@@ -21,12 +21,16 @@ interface ProjectsShowcaseProps {
   readonly projects: readonly Project[]
 }
 
-// Map project titles to their image filenames for backwards compatibility
+// Map project titles to their Cloudinary URLs for backwards compatibility
 const projectImages: Record<string, string> = {
-  'MoodChanger': '/Frame-3-1.jpg',
-  'CAIPO': '/Frame-2-2.jpg',
-  'Flo Studios': '/Frame-4.jpg',
-  'Flo Travel': '/Frame-5-3.jpg',
+  'MoodChanger': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058552/15_156b828e1e.png',
+  'CAIPO': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058568/11_082e0d104a.png',
+  'Flo Studios': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058581/image_29_61ef8c56ae.png',
+  'Flo Travel': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058544/14_261199444b.png',
+  'Flo Labs': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058521/image_1_3aafaed984.png',
+  'Flo International': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058571/Group_1_b03a84fef5.png',
+  'MoodChanger for Pets': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058517/image_52_2_f28051fbde.jpg',
+  'Humanoid Robots': 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058586/Frame_1_59_a1c07e5e10.png',
 }
 
 export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
