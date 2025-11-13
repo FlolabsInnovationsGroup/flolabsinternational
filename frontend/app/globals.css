@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #444444;
+  --flo-blue: #00349B;
+  --flo-blue-dark: #002775;
+  --flo-blue-light: #E6F0FF;
+  --font-roboto: 'Roboto', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-flo-blue: var(--flo-blue);
+  --color-flo-blue-dark: var(--flo-blue-dark);
+  --color-flo-blue-light: var(--flo-blue-light);
+  --font-family-sans: var(--font-roboto);
+  --font-family-heading: var(--font-poppins);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-roboto);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+}
+
+/* Flo Labs specific styles */
+.flo-blue-section {
+  /* EXACT WordPress blue gradient */
+  background: radial-gradient(circle, rgb(0, 99, 181) 55%, rgb(0, 39, 117) 100%);
+  color: white;
+}
+
+.flo-card {
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.flo-card:hover {
+  box-shadow: 0 3px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-border-box {
+  position: relative;
+  background: white;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+}
+
+.gradient-border-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0063B5 0%, #002775 100%);
+  margin: -4px;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+/* HubSpot Form Styling */
+.hubspot-form-wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hubspot-form-container {
+  padding: 2.5rem;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.hubspot-form-container .hs-form {
+  font-family: var(--font-roboto);
+}
+
+.hubspot-form-container .hs-form-field {
+  margin-bottom: 1.5rem;
+}
+
+.hubspot-form-container .hs-form-field > label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  font-size: 0.95rem;
+}
+
+.hubspot-form-container .hs-input,
+.hubspot-form-container select,
+.hubspot-form-container textarea {
+  width: 100% !important;
+  padding: 0.875rem;
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.hubspot-form-container .hs-input:focus,
+.hubspot-form-container select:focus,
+.hubspot-form-container textarea:focus {
+  outline: none;
+  border-color: var(--flo-blue);
+  box-shadow: 0 0 0 3px rgba(0, 52, 155, 0.1);
+}
+
+.hubspot-form-container textarea.hs-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.hubspot-form-container .hs-button {
+  background: var(--flo-blue);
+  color: white;
+  padding: 0.875rem 2.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 52, 155, 0.2);
+}
+
+.hubspot-form-container .hs-button:hover {
+  background: var(--flo-blue-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 52, 155, 0.3);
+}
+
+.hubspot-form-container .hs-error-msgs {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+
+.hubspot-form-container .hs-error-msg {
+  margin: 0;
+  font-weight: 500;
+}
+
+.hubspot-form-container .hs-form-required {
+  color: #dc3545;
+}
+
+.hubspot-form-container .legal-consent-container {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.hubspot-form-container .hs-form-booleancheckbox {
+  margin: 0.5rem 0;
+}
+
+.hubspot-form-container .hs-form-booleancheckbox label {
+  display: inline;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+/* Internship Detail Page Styling */
+.internship-detail h1 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.internship-detail h2 {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.internship-detail ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.internship-detail li {
+  position: relative;
+  padding-left: 0;
+}
+
+.internship-detail p {
+  line-height: 1.8;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--flo-blue);
+  outline-offset: 2px;
+}
