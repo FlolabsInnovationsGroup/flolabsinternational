@@ -32,7 +32,7 @@ export default async function BlogsPage() {
             {/* Hero Image */}
             <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
               <Image
-                src="/Frame-26-1.jpg"
+                src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058594/Frame_26_1_c2da48aa4e.jpg"
                 alt="blogs page image"
                 fill
                 className="object-cover"

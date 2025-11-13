@@ -11,7 +11,7 @@ export async function Hero() {
       <div className="absolute inset-0 bg-[#1e3a8a]">
         {/* World map background - MORE VISIBLE like WordPress */}
         <Image 
-          src="/Frame-3-5.jpg" 
+          src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058470/cropped_Frame_3_5_6196a31cc0.jpg" 
           alt="Flo Labs Background"
           fill
           className="object-cover opacity-70"

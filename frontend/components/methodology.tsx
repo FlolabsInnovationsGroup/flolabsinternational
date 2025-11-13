@@ -12,7 +12,7 @@ export async function Methodology() {
         {/* Banner image at top */}
         <div className="mb-12 -mx-4 md:mx-0">
           <Image
-            src="/image-52-2-1024x266.jpg"
+            src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058517/image_52_2_f28051fbde.jpg"
             alt="Our methodology - collaborative learning"
             width={1024}
             height={266}

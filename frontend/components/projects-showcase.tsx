@@ -3,13 +3,17 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Container, Section } from './layout'
+import { getStrapiImageUrl } from '@/lib/strapi'
 
 interface Project {
   id: number
   title: string
   description: string
   link?: string
-  image?: string
+  images?: {
+    url: string
+    alternativeText?: string
+  }[]
   showOnHomepage?: boolean
 }
 
@@ -26,6 +30,16 @@ const projectImages: Record<string, string> = {
 }
 
 export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
+  const getProjectImageUrl = (project: Project): string => {
+    const firstImage = project.images?.[0];
+    if (firstImage?.url) {
+      return firstImage.url.startsWith('http') 
+        ? firstImage.url 
+        : getStrapiImageUrl(firstImage.url);
+    }
+    return projectImages[project.title] || '';
+  };
+
   return (
     <Section className="flo-blue-section py-16">
       <Container>
@@ -50,11 +64,11 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
               className="flo-card group"
             >
               {/* Project image at top */}
-              {(project.image || projectImages[project.title]) && (
+              {(project.images?.[0] || projectImages[project.title]) && (
                 <div className="mb-4 -mx-6 -mt-6">
                   <Image
-                    src={project.image || projectImages[project.title]}
-                    alt={project.title}
+                    src={getProjectImageUrl(project)}
+                    alt={project.images?.[0]?.alternativeText || project.title}
                     width={266}
                     height={97}
                     className="w-full h-auto"
