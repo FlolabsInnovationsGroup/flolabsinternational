@@ -25,50 +25,43 @@ export default async function AboutPage() {
   
   return (
     <>
-      {/* Hero Section - Dark with Logo (matching WordPress) */}
-      <Section className="relative py-24 md:py-32 min-h-[400px] flex items-center justify-center bg-[#222222]">
-        <div className="absolute inset-0">
-          <Image 
-            src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058470/cropped_Frame_3_5_6196a31cc0.jpg" 
-            alt="Flo Labs R&D" 
-            fill
-            className="object-cover opacity-[0.08]"
-            priority
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-black/20 to-black/50" />
-        </div>
-        <Container className="relative z-10">
+      {/* Hero Section - Logo on white background (matching WordPress) */}
+      <Section className="bg-white py-12">
+        <Container>
           <div className="max-w-2xl mx-auto text-center">
             <Image 
               src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058482/Frame_4_3f70d2d7b7.jpg" 
               alt="Flo Labs Logo" 
-              width={200}
-              height={200}
-              className="mx-auto mb-8"
+              width={400}
+              height={150}
+              className="mx-auto"
+              priority
             />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">
-              Flo Labs R&D
-            </h1>
           </div>
         </Container>
       </Section>
 
-      {/* Flo Labs R&D Title Box (white with blue gradient border - matching WordPress) */}
+      {/* Title Box (white with blue gradient border - matching WordPress) */}
       <Section className="bg-white py-12">
         <Container>
-          <div className="max-w-4xl mx-auto gradient-border-box p-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#00349B]">
-              {aboutTitle?.title || 'Flo Labs R&D'}
-            </h1>
-            <p className="text-xl tracking-wider mb-4">
-              {aboutSubtitle?.title || 'EXECUTIVE MANAGEMENT PROGRAM'}
-            </p>
-            <div 
-              className="text-lg text-gray-700"
-              dangerouslySetInnerHTML={{ 
-                __html: aboutDescription?.content || 'Provides students a <strong>remote</strong>, <strong>unique</strong>, <strong>powerful</strong>, and <strong>immersive</strong> hands on educational experience.' 
-              }}
-            />
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-lg p-8 text-center" style={{
+              border: '6px solid',
+              borderImage: 'linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1'
+            }}>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#00349B]">
+                {aboutTitle?.title || 'Flo Labs R&D'}
+              </h1>
+              <p className="text-xl tracking-wider mb-4 text-gray-700">
+                {aboutSubtitle?.title || 'EXECUTIVE MANAGEMENT PROGRAM'}
+              </p>
+              <div 
+                className="text-lg text-gray-700"
+                dangerouslySetInnerHTML={{ 
+                  __html: aboutDescription?.content || 'Provides students a <strong>remote</strong>, <strong>unique</strong>, <strong>powerful</strong>, and <strong>immersive</strong> hands on educational experience.' 
+                }}
+              />
+            </div>
           </div>
         </Container>
       </Section>
@@ -78,7 +71,11 @@ export default async function AboutPage() {
         <Container>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
             {/* Objectives Card with Gradient Border */}
-            <div className="gradient-border-card">
+            <div className="bg-white rounded-lg p-8" style={{
+              border: '5px solid',
+              borderImage: 'linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+            }}>
               <h2 className="text-3xl font-bold mb-6 text-[#00349B] text-center border-b-4 border-[#00349B] pb-4">
                 {objectivesTitle?.title || 'Objectives'}
               </h2>
@@ -91,7 +88,11 @@ export default async function AboutPage() {
             </div>
 
             {/* Mission Card with Gradient Border */}
-            <div className="gradient-border-card">
+            <div className="bg-white rounded-lg p-8" style={{
+              border: '5px solid',
+              borderImage: 'linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+            }}>
               <h2 className="text-3xl font-bold mb-6 text-[#00349B] text-center border-b-4 border-[#00349B] pb-4">
                 {missionTitle?.title || 'Mission'}
               </h2>
