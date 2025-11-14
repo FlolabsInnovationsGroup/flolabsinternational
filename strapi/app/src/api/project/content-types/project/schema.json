@@ -25,6 +25,9 @@
       "type": "richtext",
       "required": true
     },
+    "shortDescription": {
+      "type": "text"
+    },
     "currentWork": {
       "type": "richtext"
     },

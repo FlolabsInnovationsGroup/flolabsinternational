@@ -47,6 +47,7 @@ export interface Project extends StrapiAttributes {
   title: string
   slug: string
   description: string
+  shortDescription?: string
   currentWork?: string
   images?: {
     url: string

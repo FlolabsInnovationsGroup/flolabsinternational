@@ -9,6 +9,7 @@ interface Project {
   id: number
   title: string
   description: string
+  shortDescription?: string
   link?: string
   images?: {
     url: string
@@ -43,6 +44,18 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
       return imageUrl || '';
     }
     return projectImages[project.title] || '';
+  };
+
+  const getShortDescription = (project: Project): string => {
+    if (project.shortDescription) {
+      return project.shortDescription;
+    }
+    // Strip HTML tags and get first ~150 characters
+    const plainText = project.description.replaceAll(/<[^>]*>/g, '');
+    const firstParagraph = plainText.split('\n\n')[0];
+    return firstParagraph.length > 150 
+      ? firstParagraph.substring(0, 150) + '...' 
+      : firstParagraph;
   };
 
   return (
@@ -84,10 +97,9 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
               <h4 className="text-xl font-bold mb-3 text-[#00349B]">
                 {project.title}
               </h4>
-              <div 
-                className="text-gray-700 text-sm mb-4 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: project.description }}
-              />
+              <div className="text-gray-700 text-sm mb-4 leading-relaxed line-clamp-4">
+                {getShortDescription(project)}
+              </div>
               {project.link && (
                 <a
                   href={project.link}
