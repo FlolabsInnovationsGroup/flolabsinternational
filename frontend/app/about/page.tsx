@@ -73,12 +73,12 @@ export default async function AboutPage() {
         </Container>
       </Section>
 
-      {/* Objectives & Mission Section - Blue Background with Cards */}
+      {/* Objectives & Mission Section - Blue Background with Gradient Border Cards */}
       <Section className="flo-blue-section py-16">
         <Container>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-            {/* Objectives Card */}
-            <div className="bg-white/95 rounded-lg p-8 shadow-lg">
+            {/* Objectives Card with Gradient Border */}
+            <div className="gradient-border-card">
               <h2 className="text-3xl font-bold mb-6 text-[#00349B] text-center border-b-4 border-[#00349B] pb-4">
                 {objectivesTitle?.title || 'Objectives'}
               </h2>
@@ -90,8 +90,8 @@ export default async function AboutPage() {
               />
             </div>
 
-            {/* Mission Card */}
-            <div className="bg-white/95 rounded-lg p-8 shadow-lg">
+            {/* Mission Card with Gradient Border */}
+            <div className="gradient-border-card">
               <h2 className="text-3xl font-bold mb-6 text-[#00349B] text-center border-b-4 border-[#00349B] pb-4">
                 {missionTitle?.title || 'Mission'}
               </h2>

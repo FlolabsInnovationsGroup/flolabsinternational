@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Container, Section } from '@/components/layout'
-import InternshipCarousel from '@/components/internship-carousel'
 
 interface Internship {
   id: number
@@ -17,22 +16,6 @@ export default function InternshipsPage() {
   const [filteredInternships, setFilteredInternships] = useState<Internship[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(true)
-  
-  // Carousel images - matching WordPress
-  const carouselImages = [
-    {
-      url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058576/image_33_e1731164191312_538bdefbf7.png',
-      alternativeText: 'Remote Internship Opportunities for Students'
-    },
-    {
-      url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058581/image_29_61ef8c56ae.png',
-      alternativeText: 'Remote Internship Opportunities for professionals across the globe'
-    },
-    {
-      url: 'https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058586/Frame_1_59_a1c07e5e10.png',
-      alternativeText: 'Hands-on robotics internship opportunity for remote learners'
-    }
-  ]
   
   useEffect(() => {
     async function fetchInternships() {
@@ -62,9 +45,6 @@ export default function InternshipsPage() {
     <main className="min-h-screen bg-white pt-20">
       <Section className="py-16">
         <Container>
-          {/* Carousel */}
-          <InternshipCarousel images={carouselImages} />
-          
           <div className="max-w-3xl mx-auto text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#00349B]">
               Internship Positions
