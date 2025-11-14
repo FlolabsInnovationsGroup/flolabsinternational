@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .flo-card {
-  background: white;
+  background: #EFF5FF; /* Light blue background matching WordPress */
   border: none;
   border-radius: 8px;
   padding: 1.5rem;
