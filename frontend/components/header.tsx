@@ -6,11 +6,10 @@ import { Container } from './layout'
 import { useState } from 'react'
 
 const navigation = [
+  { name: 'Blogs', href: '/blogs' },
   { name: 'About us', href: '/about' },
   { name: 'Projects', href: '/projects' },
   { name: 'Internships', href: '/internships' },
-  { name: 'Blogs', href: '/blogs' },
-  { name: 'Contact', href: '/contact' },
 ]
 
 export function Header() {
@@ -44,21 +43,13 @@ export function Header() {
             ))}
           </nav>
           
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/internships"
-              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
-            >
-              View Internships
-            </Link>
-            
-            {/* Mobile menu button */}
-            <button
-              type="button"
-              className="md:hidden p-2 text-white hover:text-blue-400"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            className="md:hidden p-2 text-white hover:text-blue-400"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path 
                   strokeLinecap="round" 
@@ -66,12 +57,9 @@ export function Header() {
                   strokeWidth={2} 
                   d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} 
                 />
-              </svg>
-            </button>
-          </div>
-        </div>
-        
-        {/* Mobile Navigation */}
+            </svg>
+          </button>
+        </div>        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-white/10">
             <nav className="py-4 space-y-2">
@@ -85,13 +73,6 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href="/internships"
-                className="block mx-4 mt-4 text-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                View Internships
-              </Link>
             </nav>
           </div>
         )}

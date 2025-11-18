@@ -40,6 +40,11 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+.hero-gradient-bg {
+  /* EXACT WordPress radial gradient for hero */
+  background: radial-gradient(circle, rgb(0, 99, 181) 55%, rgb(0, 39, 117) 100%);
+}
+
 .flo-card {
   background: #EFF5FF; /* Light blue background matching WordPress */
   border: none;
@@ -56,19 +61,11 @@ h1, h2, h3, h4, h5, h6 {
 .gradient-border-box {
   position: relative;
   background: white;
-  border-radius: 8px;
   padding: 2rem;
-  /* Create gradient border using box-shadow - matching WordPress */
-  border: 6px solid transparent;
-  background-clip: padding-box;
-  box-shadow: 
-    0 0 0 6px white,
-    0 0 0 12px #0073e6,
-    0 0 0 13px #00bfff;
-  /* Alternative approach with gradient border */
+  /* Blue gradient border matching WordPress */
+  border: 5px solid;
   border-image: linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1;
-  border-width: 6px;
-  border-style: solid;
+  /* Note: border-radius doesn't work with border-image, but WordPress doesn't use rounded corners on gradient borders */
 }
 
 .gradient-border-card {

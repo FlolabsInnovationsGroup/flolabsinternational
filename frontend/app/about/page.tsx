@@ -45,10 +45,7 @@ export default async function AboutPage() {
       <Section className="bg-white py-12">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg p-8 text-center" style={{
-              border: '6px solid',
-              borderImage: 'linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1'
-            }}>
+            <div className="gradient-border-box text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#00349B]">
                 {aboutTitle?.title || 'Flo Labs R&D'}
               </h1>
@@ -71,11 +68,7 @@ export default async function AboutPage() {
         <Container>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
             {/* Objectives Card with Gradient Border */}
-            <div className="bg-white rounded-lg p-8" style={{
-              border: '5px solid',
-              borderImage: 'linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-            }}>
+            <div className="gradient-border-card">
               <h2 className="text-3xl font-bold mb-6 text-[#00349B] text-center border-b-4 border-[#00349B] pb-4">
                 {objectivesTitle?.title || 'Objectives'}
               </h2>
@@ -88,11 +81,7 @@ export default async function AboutPage() {
             </div>
 
             {/* Mission Card with Gradient Border */}
-            <div className="bg-white rounded-lg p-8" style={{
-              border: '5px solid',
-              borderImage: 'linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-            }}>
+            <div className="gradient-border-card">
               <h2 className="text-3xl font-bold mb-6 text-[#00349B] text-center border-b-4 border-[#00349B] pb-4">
                 {missionTitle?.title || 'Mission'}
               </h2>

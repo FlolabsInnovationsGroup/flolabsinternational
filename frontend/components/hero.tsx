@@ -6,19 +6,21 @@ export async function Hero() {
   const heroTitle = await getSectionContent('hero-title')
   const heroSubtitle = await getSectionContent('hero-subtitle')
   return (
-    <section className="relative overflow-hidden bg-[#1e3a8a] min-h-screen flex items-center justify-center">
+    <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
       {/* Blue hero section with visible world map - matching WordPress EXACTLY */}
-      <div className="absolute inset-0 bg-[#1e3a8a]">
-        {/* World map background - MORE VISIBLE like WordPress */}
+      <div className="absolute inset-0">
+        {/* Radial gradient background matching WordPress */}
+        <div className="absolute inset-0 hero-gradient-bg" />
+        {/* World map background - VISIBLE like WordPress */}
         <Image 
           src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058470/cropped_Frame_3_5_6196a31cc0.jpg" 
           alt="Flo Labs Background"
           fill
-          className="object-cover opacity-70"
+          className="object-cover opacity-60"
           priority
         />
-        {/* Light overlay */}
-        <div className="absolute inset-0 bg-[#1e3a8a]/20" />
+        {/* Subtle overlay to blend */}
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#0063b5]/10" />
       </div>
       
       <Container className="relative z-10">

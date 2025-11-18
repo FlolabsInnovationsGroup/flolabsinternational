@@ -13,7 +13,7 @@ export async function AmbitiousProjects() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
             {/* Blue bordered box on the left (40%) */}
             <div className="md:col-span-2">
-              <div className="gradient-border-box p-8 text-center">
+              <div className="gradient-border-box text-center">
                 <h2 className="text-4xl md:text-5xl font-bold text-[#00349B] leading-tight">
                   {title?.title ? (
                     <span dangerouslySetInnerHTML={{ __html: title.title }} />
