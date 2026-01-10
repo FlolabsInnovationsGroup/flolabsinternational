@@ -27,7 +27,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "linkedIn": {
       "type": "string"
@@ -48,6 +50,15 @@
     },
     "endDate": {
       "type": "date"
+    },
+    "SEO_Description": {
+      "type": "text"
+    },
+    "SEO_Keywords": {
+      "type": "string"
+    },
+    "SEO_Title": {
+      "type": "string"
     }
   }
 }
