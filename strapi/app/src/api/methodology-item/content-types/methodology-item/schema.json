@@ -22,12 +22,25 @@
     },
     "order": {
       "type": "integer",
-      "default": 0,
-      "required": true
+      "required": true,
+      "default": 0
     },
     "stepNumber": {
       "type": "integer",
       "required": true
+    },
+    "SEO_Description": {
+      "type": "text"
+    },
+    "SEO_Title": {
+      "type": "string"
+    },
+    "SEO_Keywords": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }
