@@ -21,7 +21,7 @@
       "targetField": "title",
       "required": true
     },
-    "status": {
+    "internship_status": {
       "type": "enumeration",
       "required": true,
       "default": "Open",
