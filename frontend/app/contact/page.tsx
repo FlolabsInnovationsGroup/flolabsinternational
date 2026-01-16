@@ -1,23 +1,22 @@
-import { Metadata } from 'next'
-import { Container, Section } from '@/components/layout'
-import { getSiteSettings } from '@/lib/strapi'
+import { Metadata } from "next";
+import { Container, Section } from "@/components/layout";
+import { getSiteSettings } from "@/lib/strapi";
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Flo Labs R&D International',
-  description: 'Get in touch with Flo Labs R&D International. Contact us for inquiries about internships, projects, and collaborations.',
-}
+  title: "Contact Us | FloLabs Innovations Group",
+  description:
+    "Get in touch with FloLabs Innovations Group. Contact us for inquiries about internships, projects, and collaborations.",
+};
 
 export default async function ContactPage() {
-  const siteSettings = await getSiteSettings()
+  const siteSettings = await getSiteSettings();
   return (
     <>
       {/* Hero Section */}
       <Section className="flo-blue-section pt-32 pb-16">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Contact Us
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl text-white/90">
               Have questions? We&apos;d love to hear from you.
             </p>
@@ -33,11 +32,13 @@ export default async function ContactPage() {
               <h2 className="text-3xl font-bold mb-8 text-[#00349B] text-center">
                 Send Us a Message
               </h2>
-              
+
               <form className="space-y-6">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-semibold text-gray-700 mb-2">
                     Name *
                   </label>
                   <input
@@ -52,7 +53,9 @@ export default async function ContactPage() {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-gray-700 mb-2">
                     Email *
                   </label>
                   <input
@@ -67,7 +70,9 @@ export default async function ContactPage() {
 
                 {/* Subject */}
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-semibold text-gray-700 mb-2">
                     Subject *
                   </label>
                   <input
@@ -82,7 +87,9 @@ export default async function ContactPage() {
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold text-gray-700 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -99,8 +106,7 @@ export default async function ContactPage() {
                 <div className="text-center pt-4">
                   <button
                     type="submit"
-                    className="px-8 py-4 bg-[#00349B] text-white font-semibold rounded-lg hover:bg-[#002775] transition-all duration-200 transform hover:scale-105 hover:shadow-lg"
-                  >
+                    className="px-8 py-4 bg-[#00349B] text-white font-semibold rounded-lg hover:bg-[#002775] transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
                     Send Message
                   </button>
                 </div>
@@ -112,24 +118,30 @@ export default async function ContactPage() {
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 Other Ways to Reach Us
               </h3>
-              
+
               <div className="space-y-4 text-gray-700">
                 <p>
-                  <strong className="text-[#00349B]">Email:</strong>{' '}
-                  <a href={`mailto:${siteSettings?.contactEmail || 'info@flolabs.international'}`} className="hover:underline">
-                    {siteSettings?.contactEmail || 'info@flolabs.international'}
+                  <strong className="text-[#00349B]">Email:</strong>{" "}
+                  <a
+                    href={`mailto:${
+                      siteSettings?.contactEmail || "info@flolabs.international"
+                    }`}
+                    className="hover:underline">
+                    {siteSettings?.contactEmail || "info@flolabs.international"}
                   </a>
                 </p>
-                
+
                 <p>
-                  <strong className="text-[#00349B]">LinkedIn:</strong>{' '}
-                  <a 
-                    href={siteSettings?.socialLinks?.linkedin || 'https://www.linkedin.com/company/flomad-labs-r-d/'} 
-                    target="_blank" 
+                  <strong className="text-[#00349B]">LinkedIn:</strong>{" "}
+                  <a
+                    href={
+                      siteSettings?.socialLinks?.linkedin ||
+                      "https://www.linkedin.com/company/flomad-labs-r-d/"
+                    }
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:underline"
-                  >
-                    Flo Labs R&D on LinkedIn
+                    className="hover:underline">
+                    FloLabs Innovations Group on LinkedIn
                   </a>
                 </p>
               </div>
@@ -138,5 +150,5 @@ export default async function ContactPage() {
         </Container>
       </Section>
     </>
-  )
+  );
 }

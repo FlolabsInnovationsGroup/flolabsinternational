@@ -4,9 +4,9 @@ import { Container, Section } from "@/components/layout";
 import { getInterns, getStrapiImageUrl, getSectionContent } from "@/lib/strapi";
 
 export const metadata: Metadata = {
-  title: "About Us | Flo Labs R&D International",
+  title: "About Us | FloLabs Innovations Group ",
   description:
-    "Learn about Flo Labs R&D International - our mission, objectives, and team dedicated to advancing AI and robotics innovation.",
+    "Learn about FloLabs Innovations Group  - our mission, objectives, and team dedicated to advancing AI and robotics innovation.",
 };
 
 // Revalidate every 60 seconds
@@ -48,7 +48,7 @@ export default async function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="gradient-border-box text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#00349B]">
-                {aboutTitle?.title || "Flo Labs R&D"}
+                {aboutTitle?.title || "FloLabs Innovations Group"}
               </h1>
               <p className="text-xl tracking-wider mb-4 text-gray-700">
                 {aboutSubtitle?.title || "EXECUTIVE MANAGEMENT PROGRAM"}

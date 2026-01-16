@@ -6,7 +6,7 @@ import { getProjects, getStrapiImageUrl } from "@/lib/strapi";
 import InternshipCarousel from "@/components/internship-carousel";
 
 export const metadata: Metadata = {
-  title: "Our Projects | Flo Labs R&D International",
+  title: "Our Projects | FloLabs Innovations Group",
   description:
     "Explore our cutting-edge AI and robotics projects at Flo Labs - from MoodChanger to CAIPO, Flo Travel, and more.",
 };
