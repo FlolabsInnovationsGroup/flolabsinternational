@@ -28,6 +28,9 @@ export function Header() {
               className="h-12 w-auto object-contain"
               priority
             />
+            <span className=" ml-2 text-lg font-medium text-white hover:text-blue-400 transition-colors">
+              FloLabs Innovation group
+            </span>{" "}
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,7 +39,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-white hover:text-blue-400 transition-colors">
+                className="text-lg font-medium text-white hover:text-blue-400 transition-colors">
                 {item.name}
               </Link>
             ))}

@@ -23,7 +23,7 @@ export default async function BlogsPage() {
         <Container>
           <div className="max-w-6xl mx-auto text-center">
             {/* Centered Logo */}
-            <div className="mb-12">
+            {/* <div className="mb-12">
               <Image
                 src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058482/Frame_4_3f70d2d7b7.jpg"
                 alt="Flo Labs Logo"
@@ -32,7 +32,7 @@ export default async function BlogsPage() {
                 className="mx-auto"
                 priority
               />
-            </div>
+            </div> */}
 
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
               Blogs
@@ -44,7 +44,7 @@ export default async function BlogsPage() {
             </h2>
 
             {/* Hero Image */}
-            <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
+            {/* <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
               <Image
                 src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058594/Frame_26_1_c2da48aa4e.jpg"
                 alt="blogs page image"
@@ -52,7 +52,7 @@ export default async function BlogsPage() {
                 className="object-cover"
                 priority
               />
-            </div>
+            </div> */}
 
             <div className="text-lg text-white leading-relaxed space-y-4 max-w-4xl mx-auto">
               <p>

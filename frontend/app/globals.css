@@ -3,11 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #444444;
-  --flo-blue: #00349B;
+  --flo-blue: #00349b;
   --flo-blue-dark: #002775;
-  --flo-blue-light: #E6F0FF;
-  --font-roboto: 'Roboto', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --flo-blue-light: #e6f0ff;
+  --font-roboto: "Roboto", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
 }
 
 @theme inline {
@@ -28,7 +28,12 @@ body {
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-poppins);
   font-weight: 600;
 }
@@ -36,17 +41,25 @@ h1, h2, h3, h4, h5, h6 {
 /* Flo Labs specific styles */
 .flo-blue-section {
   /* EXACT WordPress blue gradient */
-  background: radial-gradient(circle, rgb(0, 99, 181) 55%, rgb(0, 39, 117) 100%);
+  background: radial-gradient(
+    circle,
+    rgb(0, 99, 181) 55%,
+    rgb(0, 39, 117) 100%
+  );
   color: white;
 }
 
 .hero-gradient-bg {
   /* EXACT WordPress radial gradient for hero */
-  background: radial-gradient(circle, rgb(0, 99, 181) 55%, rgb(0, 39, 117) 100%);
+  background: radial-gradient(
+    circle,
+    rgb(0, 99, 181) 55%,
+    rgb(0, 39, 117) 100%
+  );
 }
 
 .flo-card {
-  background: #EFF5FF; /* Light blue background matching WordPress */
+  background: #eff5ff; /* Light blue background matching WordPress */
   border: none;
   border-radius: 8px;
   padding: 1.5rem;
@@ -64,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2rem;
   /* Blue gradient border matching WordPress */
   border: 5px solid;
-  border-image: linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1;
+  border-image: linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047ab 100%) 1;
   /* Note: border-radius doesn't work with border-image, but WordPress doesn't use rounded corners on gradient borders */
 }
 
@@ -75,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2rem;
   /* Blue gradient border for cards - matching WordPress About page */
   border: 5px solid;
-  border-image: linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047AB 100%) 1;
+  border-image: linear-gradient(135deg, #00bfff 0%, #0073e6 50%, #0047ab 100%) 1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -225,4 +238,51 @@ a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--flo-blue);
   outline-offset: 2px;
+}
+
+/* for blog details */
+.article-html {
+  @apply text-[19px] leading-[1.85] text-gray-800 max-w-[860px] mx-auto;
+}
+
+.article-html p {
+  @apply my-5;
+}
+.article-html h2 {
+  @apply mt-12 mb-4 text-3xl font-bold text-[#00349B] leading-tight;
+}
+.article-html h3 {
+  @apply mt-8 mb-3 text-xl font-semibold text-gray-900;
+}
+
+.article-html a {
+  @apply text-[#00349B]  hover:text-[#002775];
+}
+.article-html img {
+  @apply my-10 rounded-xl w-full h-auto;
+}
+.article-html h2 p,
+.article-html h3 p {
+  @apply m-0;
+}
+
+.article-html ul {
+  @apply my-6 pl-6;
+  list-style: disc;
+  list-style-position: outside;
+}
+
+.article-html ol {
+  @apply my-6 pl-6;
+  list-style: decimal;
+  list-style-position: outside;
+}
+
+.article-html li {
+  @apply my-2;
+}
+
+.article-html li::marker {
+  color: var(--flo-blue);
+  font-weight: 700;
 }

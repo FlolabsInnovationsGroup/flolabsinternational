@@ -10,11 +10,11 @@ import { getHomepageProjects } from "@/lib/strapi";
 
 export default async function Home() {
   const projects = await getHomepageProjects();
-  
+
   return (
     <>
       <Hero />
-      <GetRecruited />
+      <GetRecruited id="home-content" />
       <ProjectsShowcase projects={projects} />
       <AmbitiousProjects />
       <Verticals />

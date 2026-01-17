@@ -27,26 +27,19 @@ export default async function AboutPage() {
   return (
     <>
       {/* Hero Section - Logo on white background (matching WordPress) */}
-      <Section className="bg-white py-12">
+      {/* <Section className="flo-blue-section  py-12">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
-            <Image
-              src="https://res.cloudinary.com/dgb6qsvev/image/upload/v1763058482/Frame_4_3f70d2d7b7.jpg"
-              alt="Flo Labs Logo"
-              width={400}
-              height={150}
-              className="mx-auto"
-              priority
-            />
+          simple  
           </div>
         </Container>
-      </Section>
+      </Section> */}
 
       {/* Title Box (white with blue gradient border - matching WordPress) */}
       <Section className="bg-white py-12">
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="gradient-border-box text-center">
+          <div className="max-w-4xl mx-auto ">
+            <div className="gradient-border-box text-center ">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#00349B]">
                 {aboutTitle?.title || "FloLabs Innovations Group"}
               </h1>
