@@ -30,6 +30,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics Script */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-1G7GECGMCD"
+        />
+        <Script
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-1G7GECGMCD');
+            `,
+          }}
+        />
+      </head>
       <body className={`${roboto.variable} ${poppins.variable} font-sans`}>
         {/* Skip to content link for accessibility - matching WordPress */}
         <a 
