@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     "Join Flolabs International - Building the future through innovation in AI, robotics, and cutting-edge technology. Explore internship opportunities.",
   keywords:
     "AI, robotics, internships, technology, machine learning, engineering",
+
+  // ✅ Google Search Console verification
+  verification: {
+    google: "q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg",
+  },
 };
 
 export default function RootLayout({
@@ -139,7 +144,7 @@ export default function RootLayout({
 
         <Header />
 
-        {/* مهم لتتبع الصفحات */}
+        {/* Page tracking */}
         <MixpanelTracker />
 
         <main id="content" className="min-h-screen">
