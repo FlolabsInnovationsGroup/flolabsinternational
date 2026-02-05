@@ -29,7 +29,7 @@ export function Header() {
               priority
             />
             <span className=" ml-2 text-lg font-medium text-white hover:text-blue-400 transition-colors">
-              FloLabs Innovation group
+              FloLabs Innovations Group
             </span>{" "}
           </Link>
 
