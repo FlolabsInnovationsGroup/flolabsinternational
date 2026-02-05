@@ -17,7 +17,7 @@ export async function Footer() {
               <div className="space-y-2">
                 <p>
                   <a
-                    href="https://flomadlabs.com/"
+                    href="https://www.flolabsinnovations.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-white/70 hover:text-white transition-colors">
