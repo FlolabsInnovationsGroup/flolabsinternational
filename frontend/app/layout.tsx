@@ -86,7 +86,7 @@ export default function RootLayout({
                       a||(d+=" (stub)");
                       return d
                     };
-                    a.people.toString=function(){return a.toString(1)+".people (stub)"};
+                    a.people.toString=function(){return a.toString(1)+".people (stub)"};                    
                     i="track track_pageview register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
                     for(g=0;g<i.length;g++)g(a,i[g]);
                     b._i.push([e,f,c])
@@ -101,11 +101,14 @@ export default function RootLayout({
                 }
               })(document,window.mixpanel||[]);
 
-              mixpanel.init("0c148ce055d32e1a5780196cb8f3721a", {
-                autocapture: true
-              });
-
-              mixpanel.track("Site Loaded");
+              if (window.mixpanel) {
+                mixpanel.init("0c148ce055d32e1a5780196cb8f3721a", {
+                  autocapture: true
+                });
+                mixpanel.track("Site Loaded");
+              } else {
+                console.error("Mixpanel not loaded.");
+              }
             `,
           }}
         />
@@ -128,7 +131,11 @@ export default function RootLayout({
                 var r=document.getElementsByTagName("script")[0];
                 r.parentNode.insertBefore(a,r);
               };
-              heap.load("1179613009");
+              if (window.heap) {
+                heap.load("1179613009");
+              } else {
+                console.error("Heap not loaded.");
+              }
             `,
           }}
         />
