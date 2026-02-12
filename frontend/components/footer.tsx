@@ -24,13 +24,13 @@ export async function Footer() {
                     {settings?.footerText || "A Flo Labs Company"}
                   </a>
                 </p>
-                <p>
+                {/* <p>
                   <Link
                     href="/privacy"
                     className="text-sm text-white/70 hover:text-white transition-colors">
                     Privacy Policy
                   </Link>
-                </p>
+                </p> */}
               </div>
             </div>
 
