@@ -24,9 +24,11 @@ export const metadata: Metadata = {
     "Join Flolabs International - Building the future through innovation in AI, robotics, and cutting-edge technology. Explore internship opportunities.",
   keywords: "AI, robotics, internships, technology, machine learning, engineering",
   verification: {
-    google: "q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg",
+    google: "kBlj5iqjkdZqAk4V2jrexaASOhCRgm80RQn9hNRHbB0",
   },
 };
+// amr  google-site-verification=kBlj5iqjkdZqAk4V2jrexaASOhCRgm80RQn9hNRHbB0
+// sayli q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -35,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Google Site Verification */}
         <meta
           name="google-site-verification"
-          content="q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg"
+          content="kBlj5iqjkdZqAk4V2jrexaASOhCRgm80RQn9hNRHbB0"
         />
 
         {/* Google Tag Manager Script */}
