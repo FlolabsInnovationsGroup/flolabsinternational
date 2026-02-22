@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           content="q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg"
         />
 
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager Script */}
         <Script
           id="gtm"
           strategy="afterInteractive"
@@ -75,7 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
 
-        {/* Mixpanel Library + Init */}
+        {/* Mixpanel */}
         <Script
           id="mixpanel-lib"
           strategy="afterInteractive"
@@ -116,6 +116,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </head>
 
       <body className={`${roboto.variable} ${poppins.variable} font-sans antialiased`}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KL5K4PTR"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
+        {/* Skip to content for accessibility */}
         <a
           href="#content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#00349B] focus:text-white focus:rounded-md focus:shadow-lg"
