@@ -44,7 +44,7 @@ export default function RootLayout({
         />
 
         {/* Google Analytics */}
-        <Script
+        {/* <Script
           id="ga-src"
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-N505KSHR9D"
@@ -61,7 +61,7 @@ export default function RootLayout({
             `,
           }}
         />
-
+ */}
         {/* Heap Analytics */}
         <Script
           id="heap"
