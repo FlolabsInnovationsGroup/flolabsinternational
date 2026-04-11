@@ -193,7 +193,7 @@ export default function InternshipsPage() {
 
             <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
               <p>
-                The FloLabs Innovations Internship will have you buzzing for a few
+                The FloLabs Innovations Group Internship will have you buzzing for a few
                 key reasons and they all hinge on the exciting intersection of
                 AI, robotics, entrepreneurship and various technical domains.
               </p>
@@ -202,7 +202,7 @@ export default function InternshipsPage() {
                 Flexible. Dynamic. Inspiring.
               </h3>
               <p>
-                FloLabs Innovations internships offer flexible schedules, live and
+                FloLabs Innovations Group internships offer flexible schedules, live and
                 recorded sessions, and hands-on experience in cutting-edge AI
                 and technology projects.
               </p>
