@@ -8,69 +8,91 @@ type PageProps = {
   params: Promise<{ slug: string }>
 }
 
-const SECTION_BREAKS = [
-  /^key responsibilities$/i,
-  /^qualifications and skills$/i,
-  /^qualifications\s*&\s*skills$/i,
-  /^why join us\??$/i,
-  /^hbspt\.forms\.create/i,
-]
-
-const isSectionBreak = (value: string) => {
-  const text = value.trim()
-  return SECTION_BREAKS.some((pattern) => pattern.test(text))
+type ParsedInternshipContent = {
+  overview: string[]
+  responsibilities: string[]
+  qualifications: string[]
+  whyJoinUs: string[]
 }
 
-const cleanListItem = (value: string) =>
-  value
-    .replace(/^[-•■\s]+/, '')
+const normalizeText = (value: string) =>
+  value.replace(/\r/g, '').replace(/\u00A0/g, ' ').trim()
+
+const cleanItem = (value: string) =>
+  normalizeText(value)
+    .replace(/^[-•●■▪◦]+\s*/, '')
     .trim()
 
-const getArrayData = (data: string[] | string | undefined): string[] => {
-  if (!data) return []
+const isOverviewHeading = (value: string) => /^overview$/i.test(value)
+const isResponsibilitiesHeading = (value: string) => /^key responsibilities$/i.test(value)
+const isQualificationsHeading = (value: string) =>
+  /^qualifications and skills$/i.test(value) || /^qualifications\s*&\s*skills$/i.test(value)
+const isWhyJoinUsHeading = (value: string) => /^why join us\??$/i.test(value)
+const isHubSpotScript = (value: string) => /hbspt\.forms\.create/i.test(value)
 
-  if (Array.isArray(data)) {
-    return data.map(cleanListItem).filter(Boolean)
+function parseInternshipContent(raw?: string): ParsedInternshipContent {
+  const result: ParsedInternshipContent = {
+    overview: [],
+    responsibilities: [],
+    qualifications: [],
+    whyJoinUs: [],
   }
 
-  return data
-    .split(/\r?\n/)
-    .map(cleanListItem)
-    .filter(Boolean)
-}
+  if (!raw) return result
 
-const getOverviewParagraphs = (description?: string): string[] => {
-  if (!description) return []
-
-  const paragraphs = description
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
+  const blocks = raw
+    .split(/\n\s*\n+/)
+    .map(normalizeText)
     .filter(Boolean)
 
-  const cleaned: string[] = []
+  let currentSection: keyof ParsedInternshipContent = 'overview'
 
-  for (const paragraph of paragraphs) {
-    const normalized = paragraph.trim()
-
-    // تجاهل عنوان Overview لو هو متخزن داخل المحتوى
-    if (/^overview$/i.test(normalized)) {
+  for (const block of blocks) {
+    if (isHubSpotScript(block)) {
       continue
     }
 
-    // أول ما نوصل لأول section تاني, نوقف
-    if (isSectionBreak(normalized)) {
-      break
+    if (isOverviewHeading(block)) {
+      currentSection = 'overview'
+      continue
     }
 
-    // تجاهل أي script text لو موجود
-    if (/hbspt\.forms\.create/i.test(normalized)) {
-      break
+    if (isResponsibilitiesHeading(block)) {
+      currentSection = 'responsibilities'
+      continue
     }
 
-    cleaned.push(normalized)
+    if (isQualificationsHeading(block)) {
+      currentSection = 'qualifications'
+      continue
+    }
+
+    if (isWhyJoinUsHeading(block)) {
+      currentSection = 'whyJoinUs'
+      continue
+    }
+
+    result[currentSection].push(cleanItem(block))
   }
 
-  return cleaned
+  return result
+}
+
+function splitWhyJoinItem(item: string) {
+  const cleaned = cleanItem(item)
+  const match = cleaned.match(/^([^:]+):\s*(.+)$/)
+
+  if (!match) {
+    return {
+      title: '',
+      description: cleaned,
+    }
+  }
+
+  return {
+    title: `${match[1].trim()}:`,
+    description: match[2].trim(),
+  }
 }
 
 // Generate static params for all internships
@@ -93,9 +115,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     }
   }
 
-  const overviewText = getOverviewParagraphs(internship.description).join(' ')
+  const parsed = parseInternshipContent(internship.description)
   const description =
-    overviewText.substring(0, 160) || `Join our team as a ${internship.title}`
+    parsed.overview.join(' ').substring(0, 160) || `Join our team as a ${internship.title}`
 
   return {
     title: `${internship.title} | Flo Labs Internships`,
@@ -116,9 +138,7 @@ export default async function InternshipPage(props: PageProps) {
     notFound()
   }
 
-  const overviewParagraphs = getOverviewParagraphs(internship.description)
-  const requirements = getArrayData(internship.requirements)
-  const responsibilities = getArrayData(internship.responsibilities)
+  const parsed = parseInternshipContent(internship.description)
 
   return (
     <Section className="bg-white pt-24 pb-16">
@@ -128,33 +148,31 @@ export default async function InternshipPage(props: PageProps) {
             {internship.title}
           </h1>
 
-          {overviewParagraphs.length > 0 && (
+          {parsed.overview.length > 0 && (
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-gray-200">
                 Overview
               </h2>
-              <div className="text-lg text-gray-700 leading-relaxed space-y-4">
-                {overviewParagraphs.map((paragraph, index) => (
+              <div className="text-lg text-gray-700 leading-relaxed space-y-5">
+                {parsed.overview.map((paragraph, index) => (
                   <p key={`${index}-${paragraph.slice(0, 40)}`}>{paragraph}</p>
                 ))}
               </div>
             </div>
           )}
 
-          {responsibilities.length > 0 && (
+          {parsed.responsibilities.length > 0 && (
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-gray-200">
                 Key Responsibilities
               </h2>
               <ul className="space-y-4">
-                {responsibilities.map((item, index) => (
+                {parsed.responsibilities.map((item, index) => (
                   <li
                     key={`${index}-${item.slice(0, 40)}`}
                     className="flex items-start text-gray-700 leading-relaxed"
                   >
-                    <span className="text-[#00349B] font-bold mr-3 mt-1 shrink-0">
-                      ■
-                    </span>
+                    <span className="text-[#00349B] font-bold mr-3 mt-1 shrink-0">■</span>
                     <span className="text-lg">{item}</span>
                   </li>
                 ))}
@@ -162,20 +180,18 @@ export default async function InternshipPage(props: PageProps) {
             </div>
           )}
 
-          {requirements.length > 0 && (
+          {parsed.qualifications.length > 0 && (
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-gray-200">
                 Qualifications and Skills
               </h2>
               <ul className="space-y-4">
-                {requirements.map((item, index) => (
+                {parsed.qualifications.map((item, index) => (
                   <li
                     key={`${index}-${item.slice(0, 40)}`}
                     className="flex items-start text-gray-700 leading-relaxed"
                   >
-                    <span className="text-[#00349B] font-bold mr-3 mt-1 shrink-0">
-                      ■
-                    </span>
+                    <span className="text-[#00349B] font-bold mr-3 mt-1 shrink-0">■</span>
                     <span className="text-lg">{item}</span>
                   </li>
                 ))}
@@ -183,75 +199,32 @@ export default async function InternshipPage(props: PageProps) {
             </div>
           )}
 
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-gray-200">
-              Why Join Us?
-            </h2>
+          {parsed.whyJoinUs.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b-2 border-gray-200">
+                Why Join Us?
+              </h2>
 
-            <div className="space-y-6">
-              <div className="text-lg">
-                <p className="text-gray-900 font-semibold mb-2">
-                  Stay at the Forefront of Innovation:
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Explore the latest advancements in AI, robotics, and cutting-edge
-                  technologies, contributing to scientific publications and research papers.
-                </p>
-              </div>
+              <div className="space-y-6">
+                {parsed.whyJoinUs.map((item, index) => {
+                  const entry = splitWhyJoinItem(item)
 
-              <div className="text-lg">
-                <p className="text-gray-900 font-semibold mb-2">
-                  Fully Remote & Flexible Schedule:
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  This internship is entirely remote, allowing you to contribute from anywhere.
-                  You can choose to work full-time (up to 40 hours per week) or part-time
-                  (a minimum of 8-10 hours per week) based on your availability.
-                </p>
-              </div>
-
-              <div className="text-lg">
-                <p className="text-gray-900 font-semibold mb-2">
-                  On-site Internship (Optional):
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  If interested, we can offer onsite internships at two locations: Austin, Texas,
-                  and Lemnos, Greece.
-                </p>
-              </div>
-
-              <div className="text-lg">
-                <p className="text-gray-900 font-semibold mb-2">
-                  Work on Cutting-Edge Projects:
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Contribute to advanced AI, robotics, and technology initiatives, gaining hands-on
-                  experience with state-of-the-art tools and methodologies in real-world applications.
-                </p>
-              </div>
-
-              <div className="text-lg">
-                <p className="text-gray-900 font-semibold mb-2">
-                  Interdisciplinary Collaboration:
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Work alongside experts from diverse fields including AI researchers, robotics
-                  engineers, data scientists, designers, and business strategists, expanding your
-                  professional network and skillset.
-                </p>
-              </div>
-
-              <div className="text-lg">
-                <p className="text-gray-900 font-semibold mb-2">
-                  Hands-On Development & Professional Growth:
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Build practical skills, contribute to research publications, and gain experience
-                  that will accelerate your career in technology and innovation.
-                </p>
+                  return (
+                    <div key={`${index}-${item.slice(0, 40)}`} className="text-lg">
+                      {entry.title ? (
+                        <>
+                          <p className="text-gray-900 font-semibold mb-2">{entry.title}</p>
+                          <p className="text-gray-700 leading-relaxed">{entry.description}</p>
+                        </>
+                      ) : (
+                        <p className="text-gray-700 leading-relaxed">{entry.description}</p>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          </div>
+          )}
 
           <div className="mt-16 pt-12 border-t-2 border-gray-200">
             <div className="text-center mb-8">
@@ -282,6 +255,7 @@ export default async function InternshipPage(props: PageProps) {
     </Section>
   )
 }
+
 // import { Metadata } from 'next'
 // import { notFound } from 'next/navigation'
 // import { Container, Section } from '@/components/layout'
