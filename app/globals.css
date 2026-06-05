@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f2f2f2;
+  --foreground: #00080d;
+  --card: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(30, 70, 130, 0.28);
+  --glass-shadow: 0 14px 36px rgba(0, 52, 155, 0.16);
+  --glass-tint-primary: rgba(0, 52, 155, 0.26);
+  --glass-tint-secondary: rgba(4, 118, 217, 0.24);
+  --glass-tint-accent: rgba(217, 156, 43, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.64);
+  --glass-gradient-start: rgba(4, 118, 217, 0.22);
+  --glass-gradient-end: rgba(217, 156, 43, 0.08);
+  --muted: #2f3f52;
+  --border: #cdd3dc;
+  --primary: #00349b;
+  --secondary: #0476d9;
+  --accent: #d99c2b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+}
+
+.dark {
+  --background: #00080d;
+  --foreground: #f2f2f2;
+  --card: #061626;
+  --glass-bg: rgba(6, 22, 38, 0.5);
+  --glass-border: rgba(157, 178, 203, 0.34);
+  --glass-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+  --glass-tint-primary: rgba(4, 118, 217, 0.3);
+  --glass-tint-secondary: rgba(0, 52, 155, 0.27);
+  --glass-tint-accent: rgba(217, 156, 43, 0.12);
+  --glass-highlight: rgba(157, 178, 203, 0.2);
+  --glass-gradient-start: rgba(4, 118, 217, 0.36);
+  --glass-gradient-end: rgba(217, 156, 43, 0.1);
+  --muted: #9db2cb;
+  --border: #1b3046;
+  --primary: #0476d9;
+  --secondary: #00349b;
+  --accent: #d99c2b;
+}
+
+/* Projects page: viewport-sized paint layer (used with position: fixed in HomeScene) */
+@layer components {
+  .projects-scene-bg {
+    background-color: #c8d4e4;
+    background-image: linear-gradient(165deg, #e8eef5 0%, #c8d4e4 42%, #8fa8c4 100%);
+  }
+
+  .dark .projects-scene-bg {
+    background-color: #00080d;
+    background-image: linear-gradient(165deg, #00080d 0%, #061626 48%, #0a1a2e 100%);
+  }
+}
+
+.glass-card {
+  background-color: var(--glass-bg);
+  background-image:
+    radial-gradient(130% 135% at 0% 0%, var(--glass-highlight) 0%, transparent 44%),
+    linear-gradient(
+      308deg,
+      var(--glass-gradient-start) 0%,
+      var(--glass-gradient-end) 42%,
+      var(--glass-gradient-end) 72%,
+      transparent 100%
+    );
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(13px) saturate(130%);
+  -webkit-backdrop-filter: blur(13px) saturate(130%);
+}
+
+.glass-nav {
+  background-color: color-mix(in srgb, var(--background) 76%, transparent);
+  background-image: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--glass-gradient-start) 28%, transparent) 0%,
+    color-mix(in srgb, var(--glass-gradient-end) 18%, transparent) 100%
+  );
+  border-color: color-mix(in srgb, var(--glass-border) 72%, var(--border) 28%);
+  box-shadow: 0 10px 20px rgba(0, 8, 13, 0.14);
+  backdrop-filter: blur(10px) saturate(112%);
+  -webkit-backdrop-filter: blur(10px) saturate(112%);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  width: 100%;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+pre,
+code,
+table {
+  max-width: 100%;
+}
+
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Home page projects: infinite horizontal marquee (CSS-only, not scrollLeft / rAF) */
+.home-projects-marquee-viewport {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.home-projects-marquee-track {
+  display: flex;
+  width: max-content;
+  flex-direction: row;
+  align-items: stretch;
+  animation: home-projects-marquee-scroll var(--home-marquee-duration, 52s) linear infinite;
+  will-change: transform;
+}
+
+.home-projects-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  align-self: stretch;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .home-projects-marquee-group {
+    gap: 1rem;
+  }
+}
+
+@keyframes home-projects-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-projects-marquee-track {
+    animation: none !important;
+  }
+
+  .home-projects-marquee-viewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+}
+
+/* HubSpot: script targets a div; HubSpot renders an iframe inside it (same pattern as ceren-bootcamp). */
+.hubspot-form-wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.hubspot-form-wrapper iframe {
+  display: block;
+  width: 100% !important;
+  min-height: 480px;
+  border: 0;
+}
+
+.hubspot-form-wrapper .hs-form .hs-form-field {
+  margin-bottom: 1.25rem;
+}
+
+.hubspot-form-wrapper .hs-form-field > label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+.hubspot-form-wrapper .hs-input,
+.hubspot-form-wrapper select.hs-input,
+.hubspot-form-wrapper textarea.hs-input {
+  width: 100% !important;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.hubspot-form-wrapper .hs-input:focus,
+.hubspot-form-wrapper select.hs-input:focus,
+.hubspot-form-wrapper textarea.hs-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent);
+}
+
+.hubspot-form-wrapper textarea.hs-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.hubspot-form-wrapper .hs-button {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hubspot-form-wrapper .hs-button:hover {
+  filter: brightness(1.08);
+}
