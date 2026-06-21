@@ -45,7 +45,7 @@ phases:
           --build-arg NEXT_PUBLIC_STRAPI_URL="$CONTENT_STRAPI_URL" \
           -t "$IMAGE_URI" \
           -t "$LATEST_URI" \
-          ./frontend
+          .
       - docker push "$IMAGE_URI"
       - docker push "$LATEST_URI"
 
