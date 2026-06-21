@@ -1,0 +1,362 @@
+import { Send } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+const footerLinkClass =
+  "text-[15px] text-foreground transition-colors hover:text-primary";
+
+const columnHeadingClass =
+  "text-[13px] font-bold uppercase tracking-[0.2em] text-foreground";
+
+type FooterLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
+function FooterAnchor({
+  href,
+  label,
+  external,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
+  if (external) {
+    return (
+      <a
+        href={href}
+        className={footerLinkClass}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {label}
+      </a>
+    );
+  }
+
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={footerLinkClass}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={footerLinkClass}>
+      {label}
+    </a>
+  );
+}
+
+function FooterLinkList({ links }: { links: FooterLink[] }) {
+  return (
+    <ul className="flex flex-col gap-3.5">
+      {links.map((link) => (
+        <li key={link.label}>
+          <FooterAnchor {...link} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: FooterLink[];
+}) {
+  return (
+    <div>
+      <p className={columnHeadingClass}>{title}</p>
+      <div className="mt-4">
+        <FooterLinkList links={links} />
+      </div>
+    </div>
+  );
+}
+
+function FooterAccordion({
+  title,
+  links,
+}: {
+  title: string;
+  links: FooterLink[];
+}) {
+  return (
+    <details className="group border-b border-border pb-5 dark:border-white/10">
+      <summary
+        className={`${columnHeadingClass} flex cursor-pointer list-none items-center gap-2 [&::-webkit-details-marker]:hidden`}
+      >
+        {title}
+        <span
+          className="text-[11px] transition-transform duration-200 group-open:rotate-90"
+          aria-hidden
+        >
+          ▸
+        </span>
+      </summary>
+      <div className="mt-4">
+        <FooterLinkList links={links} />
+      </div>
+    </details>
+  );
+}
+
+function NewsletterSection() {
+  const inputId = "footer-newsletter-email";
+
+  return (
+    <div>
+      <p className={columnHeadingClass}>Newsletter</p>
+      <p className="mt-3 text-[13px] text-muted">
+        Receive the newest FloLabs updates at:
+      </p>
+      <form
+        className="mt-4 flex w-full max-w-[340px] items-center bg-[#D1D1D1] p-1"
+        action="#"
+      >
+        <label htmlFor={inputId} className="sr-only">
+          Email address
+        </label>
+        <input
+          id={inputId}
+          name="email"
+          type="email"
+          autoComplete="email"
+          placeholder="Enter your email..."
+          className="min-h-10 flex-1 bg-transparent px-4 text-[15px] text-gray-800 outline-none placeholder:text-gray-600"
+        />
+        <button
+          type="submit"
+          className="flex h-10 w-10 shrink-0 items-center justify-center bg-black text-white transition-colors hover:bg-primary"
+          aria-label="Subscribe to newsletter"
+        >
+          <Send className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+        </button>
+      </form>
+    </div>
+  );
+}
+
+function SocialMediaSection() {
+  return (
+    <div>
+      <p className={columnHeadingClass}>Social media</p>
+      <div className="mt-4 flex items-center gap-4">
+        <a
+          href="https://www.youtube.com/@FloLabsInnovation"
+          className="inline-flex text-foreground transition-colors hover:text-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="FloLabs on YouTube"
+        >
+          <YouTubeIcon />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/flolabs-innovation/"
+          className="inline-flex text-foreground transition-colors hover:text-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="FloLabs on LinkedIn"
+        >
+          <LinkedInIcon />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+const navigationLinks: FooterLink[] = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Internships", href: "/internships" },
+];
+
+const projectLinks: FooterLink[] = [
+  {
+    label: "Athletic Performance",
+    href: "https://www.athleticperformanceintelligence.com/",
+    external: true,
+  },
+  {
+    label: "CAIPO",
+    href: "https://www.caipo.ai/",
+    external: true,
+  },
+  {
+    label: "Connecting the Dots",
+    href: "https://www.youtube.com/@flolabsinnovation",
+    external: true,
+  },
+  {
+    label: "Flo Travel",
+    href: "https://www.flomadtravel.com/",
+    external: true,
+  },
+  {
+    label: "FloBrain",
+    href: "https://www.flobrain.ai/",
+    external: true,
+  },
+  {
+    label: "FloLabs Innovations Group",
+    href: "https://www.flolabsinnovations.com/",
+    external: true,
+  },
+  {
+    label: "FloLabs International",
+    href: "https://www.flolabs.international/",
+    external: true,
+  },
+  {
+    label: "FloStudios",
+    href: "https://www.flostudios.ai/",
+    external: true,
+  },
+  {
+    label: "Hephaestus International",
+    href: "https://hephaestus.international/",
+    external: true,
+  },
+  {
+    label: "Innovation Bootcamp University",
+    href: "https://www.bootcampuniversity.org/",
+    external: true,
+  },
+  {
+    label: "MoodChanger",
+    href: "https://www.moodchanger.ai/",
+    external: true,
+  },
+  {
+    label: "Legal & Ethics Ventures Institute",
+    href: "https://www.legalethicsventuresinstitute.com/",
+    external: true,
+  },
+  {
+    label: "RoboCollective",
+    href: "https://www.robocollective.ai/",
+    external: true,
+  },
+  {
+    label: "Space Ventures Institute",
+    href: "https://www.spaceventuresinstitute.com/",
+    external: true,
+  },
+  {
+    label: "TARRL",
+    href: "https://tarrl.org/",
+    external: true,
+  },
+];
+
+const companyLinks: FooterLink[] = [
+  { label: "Careers", href: "/internships" },
+  { label: "Contact Us", href: "/internships" },
+  {
+    label: "Merch",
+    href: "https://flolabsrd.notion.site/merch-background",
+    external: true,
+  },
+];
+
+function YouTubeIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="currentColor"
+    >
+      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="currentColor"
+    >
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+export function SiteFooter() {
+  return (
+    <footer className="mt-auto w-full border-t border-border bg-background py-16 text-foreground sm:py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.7fr)_minmax(0,0.95fr)_minmax(0,0.7fr)] lg:gap-10 xl:gap-14">
+          {/* Column 1: brand, description, newsletter, social */}
+          <div className="flex flex-col gap-8 lg:col-span-1">
+            <div>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-3 transition-opacity hover:opacity-90"
+              >
+                <Image
+                  src="/flolabs-logo.svg"
+                  alt="FloLabs International logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 shrink-0"
+                />
+                <span className="text-base font-bold text-foreground sm:text-lg">
+                  FloLabs International
+                </span>
+              </Link>
+              <p className="mt-2 text-[13px] text-muted">
+                | a FloLabs Innovations Group project
+              </p>
+              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-foreground">
+                FloLabs International is the global platform showcasing our
+                mission, active projects, and collaboration opportunities across
+                AI and robotics. We connect curious builders to experiential
+                learning and real venture execution through the FloLabs
+                portfolio.
+              </p>
+            </div>
+
+            <NewsletterSection />
+            <SocialMediaSection />
+          </div>
+
+          {/* Desktop columns 2–4 */}
+          <div className="hidden lg:block">
+            <FooterColumn title="Navigation" links={navigationLinks} />
+          </div>
+          <div className="hidden lg:block">
+            <FooterColumn title="Projects" links={projectLinks} />
+          </div>
+          <div className="hidden lg:block">
+            <FooterColumn title="Company" links={companyLinks} />
+          </div>
+        </div>
+
+        {/* Mobile: navigation, projects, company accordions */}
+        <div className="mt-10 flex flex-col gap-1 lg:hidden">
+          <FooterAccordion title="Navigation" links={navigationLinks} />
+          <FooterAccordion title="Projects" links={projectLinks} />
+          <FooterAccordion title="Company" links={companyLinks} />
+        </div>
+
+        <div className="mt-14 border-t border-border pt-8 sm:mt-16 dark:border-white/10">
+          <p className="text-center text-[13px] font-light tracking-[0.25em] text-muted dark:text-foreground">
+            Live Long and Prosper
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
