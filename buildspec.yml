@@ -1,0 +1,57 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_REGION: us-east-1
+    ECR_REPOSITORY: flolabs-international
+
+phases:
+  pre_build:
+    commands:
+      - set -eu
+      - COMMIT_SHA="${GIT_SHA:-${CODEBUILD_RESOLVED_SOURCE_VERSION}}"
+      - SHORT_SHA="$(printf '%.12s' "$COMMIT_SHA")"
+      - IMAGE_TAG="git-${SHORT_SHA}"
+      - ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
+      - REGISTRY="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+      - IMAGE_URI="${REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+      - LATEST_URI="${REGISTRY}/${ECR_REPOSITORY}:latest"
+      - BUILD_TIMESTAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+      - echo "IMAGE_URI=${IMAGE_URI}" >> /tmp/build.env
+      - echo "LATEST_URI=${LATEST_URI}" >> /tmp/build.env
+      - echo "IMAGE_TAG=${IMAGE_TAG}" >> /tmp/build.env
+      - echo "BUILD_TIMESTAMP=${BUILD_TIMESTAMP}" >> /tmp/build.env
+      - echo "COMMIT_SHA=${COMMIT_SHA}" >> /tmp/build.env
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$REGISTRY"
+      - export CONTENT_STRAPI_URL="$(aws ssm get-parameter --name /flolabsinternational/CONTENT_STRAPI_URL --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")"
+      - export DATABASE_URL="$(aws ssm get-parameter --name /flolabs-chronos/DATABASE_URL --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")"
+      - export AUTH_SECRET="$(aws ssm get-parameter --name /flolabsinternational/AUTH_SECRET --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")"
+      - export OPENAI_API_KEY="$(aws ssm get-parameter --name /flolabs-chronos/OPENAI_API_KEY --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION" 2>/dev/null || echo '')"
+      - export RESEND_API_KEY="$(aws ssm get-parameter --name /flolabs-chronos/RESEND_API_KEY --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION" 2>/dev/null || echo '')"
+      - export EMAIL_FROM="$(aws ssm get-parameter --name /flolabs-chronos/EMAIL_FROM --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION" 2>/dev/null || echo '')"
+      - export NOTION_API_KEY="$(aws ssm get-parameter --name /flolabs-chronos/NOTION_API_KEY --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION" 2>/dev/null || echo '')"
+      - export STRAPI_API_TOKEN="$(aws ssm get-parameter --name /flolabsinternational/STRAPI_API_TOKEN --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")"
+
+  build:
+    commands:
+      - set -eu
+      - . /tmp/build.env
+      - |
+        docker build \
+          --build-arg BUILD_COMMIT_SHA="$COMMIT_SHA" \
+          --build-arg BUILD_COMMIT_REF=main \
+          --build-arg BUILD_IMAGE_TAG="$IMAGE_TAG" \
+          --build-arg BUILD_TIMESTAMP="$BUILD_TIMESTAMP" \
+          --build-arg NEXT_PUBLIC_STRAPI_URL="$CONTENT_STRAPI_URL" \
+          -t "$IMAGE_URI" \
+          -t "$LATEST_URI" \
+          ./frontend
+      - docker push "$IMAGE_URI"
+      - docker push "$LATEST_URI"
+
+  post_build:
+    commands:
+      - set -eu
+      - . /tmp/build.env
+      - echo "Build complete. Image pushed as $IMAGE_URI and $LATEST_URI"
+      - echo "Trigger EC2 update via SSM to complete deployment."
