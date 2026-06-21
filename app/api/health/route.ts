@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   if (!deep) {
     return NextResponse.json({
       ok: true,
-      app: 'hephaestus-international',
+      app: 'flolabs-international',
       commitSha: process.env.BUILD_COMMIT_SHA ?? null,
       commitRef: process.env.BUILD_COMMIT_REF ?? null,
       imageTag: process.env.BUILD_IMAGE_TAG ?? null,
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
   return NextResponse.json(
     {
       ok: dbOk,
-      app: 'hephaestus-international',
+      app: 'flolabs-international',
       commitSha: process.env.BUILD_COMMIT_SHA ?? null,
       commitRef: process.env.BUILD_COMMIT_REF ?? null,
       imageTag: process.env.BUILD_IMAGE_TAG ?? null,
