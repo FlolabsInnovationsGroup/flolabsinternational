@@ -1,4 +1,4 @@
-# Flo Labs International - Modern Website
+# Flo Labs International 
 
 > Modern, high-performance website built with Next.js 16 and Strapi CMS
 
