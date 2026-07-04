@@ -28,12 +28,12 @@ export function SectionShell({
               </p>
             ) : null}
             {title ? (
-              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+              <h2 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
                 {title}
               </h2>
             ) : null}
             {description ? (
-              <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
+              <p className="mt-4 text-pretty text-sm leading-7 text-muted sm:text-base">
                 {description}
               </p>
             ) : null}

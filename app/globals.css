@@ -131,6 +131,15 @@
   body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
   ::selection { background-color: color-mix(in srgb, var(--primary) 25%, transparent); }
   img, picture, video { max-width: 100%; height: auto; }
+
+  /* Avoid lone words on the last line (widows) and ragged short headings */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p, li, dd, figcaption, blockquote {
+    text-wrap: pretty;
+  }
 }
 
 /* Glass morphism nav */
@@ -168,14 +177,94 @@
 .hubspot-form-container .hs-button { background: var(--primary); color: white; padding: 0.875rem 2.5rem; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; }
 
 /* Blog article styling */
-.article-html { font-size: 19px; line-height: 1.85; max-width: 860px; margin: 0 auto; }
+.article-html { font-size: 19px; line-height: 1.85; max-width: 860px; margin: 0 auto; text-wrap: pretty; }
 .article-html p { margin: 1.25rem 0; }
-.article-html h2 { margin-top: 3rem; margin-bottom: 1rem; font-size: 1.875rem; font-weight: 700; color: var(--primary); }
-.article-html h3 { margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 600; }
+.article-html h2 { margin-top: 3rem; margin-bottom: 1rem; font-size: 1.875rem; font-weight: 700; color: var(--primary); text-wrap: balance; }
+.article-html h3 { margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 600; text-wrap: balance; }
 .article-html a { color: var(--primary); }
 .article-html img { margin: 2.5rem 0; border-radius: 0.75rem; width: 100%; }
 .article-html ul, .article-html ol { margin: 1.5rem 0; padding-left: 1.5rem; }
 .article-html li { margin: 0.5rem 0; }
+
+/* Projects page: viewport-sized paint layer (used with position: fixed in HomeScene) */
+@layer components {
+  .projects-scene-bg {
+    background-color: #c8d4e4;
+    background-image: linear-gradient(165deg, #e8eef5 0%, #c8d4e4 42%, #8fa8c4 100%);
+  }
+
+  .dark .projects-scene-bg {
+    background-color: #00080d;
+    background-image: linear-gradient(165deg, #00080d 0%, #061626 48%, #0a1a2e 100%);
+  }
+}
+
+.glass-card {
+  background-color: var(--glass-bg);
+  background-image:
+    radial-gradient(130% 135% at 0% 0%, var(--glass-highlight) 0%, transparent 44%),
+    linear-gradient(
+      308deg,
+      var(--glass-gradient-start) 0%,
+      var(--glass-gradient-end) 42%,
+      var(--glass-gradient-end) 72%,
+      transparent 100%
+    );
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(13px) saturate(130%);
+  -webkit-backdrop-filter: blur(13px) saturate(130%);
+}
+
+/* Home page projects: infinite horizontal marquee (CSS-only, not scrollLeft / rAF) */
+.home-projects-marquee-viewport {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.home-projects-marquee-track {
+  display: flex;
+  width: max-content;
+  flex-direction: row;
+  align-items: stretch;
+  animation: home-projects-marquee-scroll var(--home-marquee-duration, 52s) linear infinite;
+  will-change: transform;
+}
+
+.home-projects-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  align-self: stretch;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .home-projects-marquee-group {
+    gap: 1rem;
+  }
+}
+
+@keyframes home-projects-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-projects-marquee-track {
+    animation: none !important;
+  }
+
+  .home-projects-marquee-viewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+}
 
 /* Accessibility */
 a:focus-visible, button:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }

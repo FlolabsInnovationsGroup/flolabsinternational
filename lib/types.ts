@@ -24,7 +24,6 @@ export interface Internship {
   responsibilities?: string[];
   whatYouWillLearn?: string[];
   benefits?: string[];
-  duration?: string;
   timeCommitment?: string;
   location: string;
   remote: boolean;

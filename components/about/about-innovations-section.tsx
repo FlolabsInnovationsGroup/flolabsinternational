@@ -5,14 +5,15 @@ import {
 } from "@/components/about/about-reveal-config";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { aboutIntro } from "@/lib/site-data";
+import { noWidow } from "@/lib/typography";
 
 const FLOLABS_LOGO = "/projects/icons/Flolabs_logo%20Black.png";
 
 const sectionHeadingClass =
-  "text-2xl font-bold uppercase leading-[1.08] tracking-[0.14em] text-foreground dark:text-white sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-balance text-2xl font-bold uppercase leading-[1.08] tracking-[0.14em] text-foreground dark:text-white sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 const sectionBodyClass =
-  "text-base font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-pretty text-base font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 export function AboutInnovationsSection() {
   return (
@@ -48,7 +49,7 @@ export function AboutInnovationsSection() {
             </h2>
             <div className={`mt-6 space-y-5 sm:mt-8 ${sectionBodyClass}`}>
               {aboutIntro.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                <p key={paragraph.slice(0, 48)}>{noWidow(paragraph)}</p>
               ))}
             </div>
           </div>

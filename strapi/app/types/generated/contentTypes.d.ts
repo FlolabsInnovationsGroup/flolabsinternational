@@ -564,7 +564,6 @@ export interface ApiInternshipInternship extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText & Schema.Attribute.Required;
-    duration: Schema.Attribute.String;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     hubspotFormId: Schema.Attribute.String;
     images: Schema.Attribute.Media<'images', true>;

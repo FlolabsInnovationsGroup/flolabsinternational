@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { projectPanelShellClass } from "@/components/project-panel";
 import type { BlogPost } from "@/lib/site-data";
+import { noWidow } from "@/lib/typography";
 
 const cardShellGridClass = `group flex h-full flex-col ${projectPanelShellClass} transition-[border-color,background-color,box-shadow] duration-200 hover:border-primary/40 hover:bg-card/72 hover:shadow-md px-5 py-5 dark:hover:border-white/40 dark:hover:bg-[#081e32]/96 dark:hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:px-6 sm:py-6`;
 
 const titleClass =
-  "min-w-0 text-base font-semibold uppercase leading-snug tracking-[0.2em] text-foreground dark:text-white [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "min-w-0 text-balance text-base font-semibold uppercase leading-snug tracking-[0.2em] text-foreground dark:text-white [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 const metaClass =
   "text-xs font-normal text-muted dark:text-white/70 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 const excerptClass =
-  "mt-3 min-w-0 flex-1 text-sm font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "mt-3 min-w-0 flex-1 text-pretty text-sm font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 const tagClass =
   "rounded-full border border-primary/35 bg-primary/10 px-2 py-1 text-[11px] font-medium text-primary dark:border-[#4d8fd4]/50 dark:bg-[#00349b]/40 dark:text-[#c5daf5]";
@@ -46,7 +47,7 @@ export function BlogCard({ post }: BlogCardProps) {
       ) : null}
 
       <p className={excerptClass}>
-        <span className="line-clamp-4">{post.excerpt}</span>
+        <span className="line-clamp-4">{noWidow(post.excerpt)}</span>
       </p>
 
       <div className="mt-auto pt-6">

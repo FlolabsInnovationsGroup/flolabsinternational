@@ -47,7 +47,7 @@ export function AboutHero() {
           revealOnScroll={false}
           className={heroRevealClass}
         >
-          <h1 className="mt-6 text-[1.65rem] font-bold uppercase leading-[1.08] tracking-[0.14em] text-black dark:text-white sm:mt-7 sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
+          <h1 className="mt-6 text-balance text-[1.65rem] font-bold uppercase leading-[1.08] tracking-[0.14em] text-black dark:text-white sm:mt-7 sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
             About
           </h1>
         </ScrollReveal>
@@ -57,7 +57,7 @@ export function AboutHero() {
           revealOnScroll={false}
           className={heroRevealClass}
         >
-          <p className="mx-auto mt-4 max-w-2xl text-center text-base font-normal leading-relaxed text-black/88 dark:text-white/88 sm:mt-5 sm:text-lg [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
+          <p className="mx-auto mt-4 max-w-2xl text-pretty text-center text-base font-normal leading-relaxed text-black/88 dark:text-white/88 sm:mt-5 sm:text-lg [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
             {aboutIntro.tagline}
           </p>
         </ScrollReveal>

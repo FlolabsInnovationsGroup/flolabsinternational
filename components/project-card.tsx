@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { projectDetailLinkClass, projectPanelShellClass } from "@/components/project-panel";
 import type { Project } from "@/lib/site-data";
+import { noWidow } from "@/lib/typography";
 
 /** Opaque frosted shell: no backdrop-filter (marquee transform + scroll reveal break blur). */
 const cardShellCarouselClass =
@@ -95,18 +96,18 @@ export function ProjectCard({
       ) : null}
 
       <h3
-        className={`min-w-0 text-base font-semibold uppercase leading-snug tracking-[0.2em] [font-family:var(--font-inter),Arial,Helvetica,sans-serif] ${
+        className={`min-w-0 text-balance text-base font-semibold uppercase leading-snug tracking-[0.2em] [font-family:var(--font-inter),Arial,Helvetica,sans-serif] ${
           layout === "grid" ? "text-foreground dark:text-white" : "text-white"
         }`}
       >
         {project.name}
       </h3>
       <p
-        className={`mt-3 min-w-0 flex-1 text-sm font-normal leading-relaxed [font-family:var(--font-inter),Arial,Helvetica,sans-serif] ${
+        className={`mt-3 min-w-0 flex-1 text-pretty text-sm font-normal leading-relaxed [font-family:var(--font-inter),Arial,Helvetica,sans-serif] ${
           layout === "grid" ? "text-muted dark:text-white/82" : "text-white/82"
         }`}
       >
-        <span className="line-clamp-4">{project.summary}</span>
+        <span className="line-clamp-4">{noWidow(project.summary)}</span>
       </p>
 
       <div className="mt-6">

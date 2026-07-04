@@ -13,6 +13,7 @@ export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/blogs", label: "Blogs" },
+  { href: "/internships", label: "Internships" },
 ];
 
 /**
@@ -24,7 +25,6 @@ export type InternshipPosition = {
   status: "Open" | "Closed" | "Closing Soon" | "Pending" | "Filled";
   company?: string;
   location?: string;
-  duration?: string;
   schedule?: string;
   summary?: string;
   /** Long-form body for the detail page (e.g. Strapi rich text or markdown). */
@@ -237,6 +237,18 @@ export const projects: Project[] = [
     currentWork:
       "Current focus areas include CAIPO Space Buddy, MoodChanger for space wellbeing, space travel marketplace initiatives, robotics programs, and media or grant activities.",
     siteUrl: "https://www.spaceventuresinstitute.com/",
+    logoPath: "/projects/icons/FloLabs_logo%20Space.svg",
+  },
+  {
+    slug: "cosmos-intelligence",
+    name: "Cosmos Intelligence",
+    summary:
+      "An open research and product initiative using AI to study cosmic-scale structure, signals, and information patterns across public space data.",
+    whatProjectIs:
+      "Cosmos Intelligence is a FloLabs Group and TARRL initiative building AI systems to detect hidden structure, signal behavior, and information-like patterns in the observable Universe using public astronomy archives.",
+    currentWork:
+      "The team is building a cosmic research engine, the AI Space View App, and FloBrain Space Buddy while advancing data pipelines, anomaly detection, and evidence-based review workflows.",
+    siteUrl: "http://cosmosintelligence.org/",
     logoPath: "/projects/icons/FloLabs_logo%20Space.svg",
   },
 ];

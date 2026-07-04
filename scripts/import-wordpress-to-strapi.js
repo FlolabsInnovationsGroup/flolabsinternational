@@ -115,9 +115,6 @@ function parseInternshipFromPost(post) {
   // Parse location
   const location = getMetaValue('_job_location') || getMetaValue('location') || 'Remote';
   
-  // Parse duration
-  const duration = getMetaValue('_job_duration') || getMetaValue('duration') || '3-6 months';
-  
   // Parse status
   let status = 'Open';
   const postStatus = post['wp:status'];
@@ -171,7 +168,6 @@ function parseInternshipFromPost(post) {
     slug,
     status,
     location,
-    duration,
     description: description.substring(0, 5000), // Limit description length
     requirements: reqArray.map(r => `- ${r}`).join('\n'),
     responsibilities: respArray.map(r => `- ${r}`).join('\n'),

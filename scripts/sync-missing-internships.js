@@ -115,7 +115,6 @@ function loadStaticInternships() {
       const descriptionMatch = objText.match(/description:\s*['"](.*?)['"]/s);
       const statusMatch = objText.match(/status:\s*['"](.*?)['"]/);
       const locationMatch = objText.match(/location:\s*['"](.*?)['"]/);
-      const durationMatch = objText.match(/duration:\s*['"](.*?)['"]/);
       
       if (titleMatch && slugMatch) {
         internships.push({
@@ -125,7 +124,6 @@ function loadStaticInternships() {
           description: descriptionMatch ? descriptionMatch[1].replace(/\\'/g, "'") : '',
           status: statusMatch ? statusMatch[1] : 'Open',
           location: locationMatch ? locationMatch[1] : 'Remote',
-          duration: durationMatch ? durationMatch[1] : '3-6 months',
         });
       }
     }
@@ -148,7 +146,6 @@ async function createInternship(internshipData) {
       slug: internshipData.slug,
       status: internshipData.status || 'Open',
       location: internshipData.location || 'Remote',
-      duration: internshipData.duration || '3-6 months',
       description: internshipData.description || '',
       requirements: Array.isArray(internshipData.requirements) 
         ? internshipData.requirements.join('\n') 

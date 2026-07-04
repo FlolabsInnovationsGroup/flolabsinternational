@@ -23,7 +23,7 @@
 - ✅ **Internships** (`/internships`) - List page with carousel
   - Hero carousel with 3 rotating images
   - 39 internships displayed in grid
-  - Location and duration badges
+  - Location badges
   
 - ✅ **Internship Detail** (`/internships/[slug]`) - 39 dynamic pages
   - Hero with status badge
@@ -61,7 +61,7 @@
 - ✅ **Internships**: 39/39 imported from WordPress
   - All fields mapped correctly
   - Requirements/responsibilities parsed as arrays
-  - Status, location, duration displaying
+  - Status, location displaying
   - HubSpot form IDs preserved
   
 - ✅ **Projects**: 8/8 created in Strapi

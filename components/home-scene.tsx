@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { HomeSceneCtaLink } from "@/components/home-scene-cta-link";
+import { noWidow } from "@/lib/typography";
 
 export type HomeSceneCta = {
   href: string;
@@ -31,8 +32,10 @@ type HomeSceneProps = {
   centerContent?: boolean;
   /** When `centerContent` is true: Tailwind width class for the intro block (headline / description). */
   centerIntroMaxWidthClass?: string;
-  /** Rendered at the end of the headline row (e.g. back link on project detail). */
+  /** Rendered beside or above the headline (e.g. back link on detail pages). */
   headerAside?: ReactNode;
+  /** When true with `headerAside`, places the aside above the headline and uses full content width. */
+  stackedHeaderAside?: boolean;
   /** Center headline, body, and CTA (home hero). */
   centerText?: boolean;
   /** Delay before reveal animation (ms). Defaults to 0 for `id="home"`, 1000 for other scenes. */
@@ -56,6 +59,7 @@ export function HomeScene({
   centerContent = false,
   centerIntroMaxWidthClass,
   headerAside,
+  stackedHeaderAside = false,
   centerText = false,
   revealDelay,
 }: HomeSceneProps) {
@@ -63,6 +67,14 @@ export function HomeScene({
   const isHeroScene = id === "home";
   const effectiveRevealDelay = revealDelay ?? (isHeroScene ? 0 : 1000);
   const layoutCentered = centerContent || centerText;
+  const headlineSharesRow = Boolean(logoSrc || (headerAside && !stackedHeaderAside));
+  const introWidthClass = stackedHeaderAside
+    ? "w-full min-w-0"
+    : centerContent
+      ? `w-full min-w-0 ${centerIntroMaxWidthClass ?? "max-w-3xl"}`
+      : wideDescription || !logoSrc
+        ? "w-full min-w-0"
+        : "w-full min-w-0 max-w-2xl lg:max-w-3xl";
 
   return (
     <section
@@ -70,7 +82,7 @@ export function HomeScene({
       className={
         isGradient
           ? "relative min-h-[100dvh] w-full overflow-x-clip border-b border-border/70 dark:border-white/10"
-          : "relative min-h-[100dvh] w-full overflow-hidden border-b border-border/50 dark:border-white/10"
+          : "relative min-h-[100dvh] w-full overflow-x-clip border-b border-border/50 dark:border-white/10"
       }
     >
       {isGradient ? (
@@ -103,19 +115,14 @@ export function HomeScene({
           centerContent ? " items-center" : ""
         }`}
       >
-        <ScrollReveal
-          className={
-            centerContent
-              ? `w-full shrink-0 ${centerIntroMaxWidthClass ?? "max-w-3xl"}`
-              : wideDescription
-                ? "w-full max-w-5xl shrink-0 lg:max-w-6xl"
-                : logoSrc
-                  ? "w-full max-w-2xl shrink-0 lg:max-w-3xl"
-                  : "max-w-xl shrink-0 lg:max-w-2xl"
-          }
-        >
+        <ScrollReveal className={introWidthClass}>
+          {stackedHeaderAside && headerAside ? (
+            <div className="mb-3">{headerAside}</div>
+          ) : null}
           <div
-            className={`flex items-center gap-4 sm:gap-5 lg:gap-6${headerAside ? " flex-wrap" : ""}`}
+            className={`flex w-full min-w-0 items-center gap-4 sm:gap-5 lg:gap-6${
+              headerAside && !stackedHeaderAside ? " flex-wrap" : ""
+            }`}
           >
             {logoSrc ? (
               <div className="flex h-12 w-20 shrink-0 items-center justify-start sm:h-14 sm:w-24 lg:h-16 lg:w-28">
@@ -129,22 +136,24 @@ export function HomeScene({
               </div>
             ) : null}
             <h2
-              className={`min-w-0 flex-1 text-[1.65rem] uppercase leading-[1.08] tracking-[0.14em] sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif] ${
+              className={`${
+                headlineSharesRow ? "min-w-0 flex-1" : "w-full min-w-0"
+              } max-w-full text-balance break-words text-[clamp(1.125rem,3.6vw+0.7rem,1.65rem)] uppercase leading-[1.12] tracking-[0.07em] sm:text-3xl sm:leading-[1.08] sm:tracking-[0.14em] lg:text-4xl lg:tracking-[0.16em] [font-family:var(--font-inter),Arial,Helvetica,sans-serif] ${
                 boldHeadline ? "font-bold" : "font-semibold"
               } text-foreground dark:text-white`}
             >
               {headline}
             </h2>
-            {headerAside ? (
+            {headerAside && !stackedHeaderAside ? (
               <div className="ml-auto shrink-0 self-center">{headerAside}</div>
             ) : null}
           </div>
           <div
-            className={`mt-6 space-y-4 text-base font-normal leading-relaxed sm:text-lg ${
+            className={`mt-6 space-y-4 text-pretty text-base font-normal leading-relaxed sm:text-lg ${
               isGradient ? "text-muted dark:text-white/88" : "text-muted dark:text-white/82"
             }`}
           >
-            {typeof description === "string" ? <p>{description}</p> : description}
+            {typeof description === "string" ? <p>{noWidow(description)}</p> : description}
           </div>
           {cta ? (
             <div className="mt-9">

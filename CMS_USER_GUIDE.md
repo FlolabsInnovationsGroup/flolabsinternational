@@ -35,7 +35,6 @@ When you log in, you'll see the **Dashboard** with a sidebar menu on the left:
    - **Responsibilities**: What they'll be doing (one per line)
    - **Category**: Choose from dropdown (Engineering, Marketing, etc.)
    - **Status**: "Open", "Closed", or "Filled"
-   - **Duration**: e.g., "3-6 months"
    - **Location**: e.g., "Remote" or "Boston, MA"
    - **HubSpot Form ID**: Use `0133caf3-53e5-403f-a894-cd0246642913` (standard form)
 5. Click **"Save"** (top right) or **"Save & Publish"**

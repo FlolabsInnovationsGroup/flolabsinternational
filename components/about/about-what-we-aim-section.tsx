@@ -7,19 +7,20 @@ import {
 } from "@/components/about/about-reveal-config";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { aboutObjectives } from "@/lib/site-data";
+import { noWidow } from "@/lib/typography";
 
 const WHAT_WE_AIM_BACKGROUND = "/about/what-we-aim-background.png";
 const WHAT_WE_AIM_BACKGROUND_WIDTH = 1961;
 const WHAT_WE_AIM_BACKGROUND_HEIGHT = 361;
 
 const sectionTitleClass =
-  "text-center text-2xl font-bold uppercase leading-[1.08] tracking-[0.14em] text-foreground dark:text-white sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-balance text-center text-2xl font-bold uppercase leading-[1.08] tracking-[0.14em] text-foreground dark:text-white sm:text-3xl sm:tracking-[0.16em] lg:text-4xl [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 const pillarTitleClass =
-  "text-base font-bold uppercase leading-snug tracking-[0.14em] text-white sm:text-lg [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-balance text-base font-bold uppercase leading-snug tracking-[0.14em] text-white sm:text-lg [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 const pillarBodyClass =
-  "mt-1.5 text-sm font-normal leading-snug text-white/90 sm:mt-2 sm:text-base sm:leading-relaxed [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "mt-1.5 text-pretty text-sm font-normal leading-snug text-white/90 sm:mt-2 sm:text-base sm:leading-relaxed [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 export function AboutWhatWeAimSection() {
   return (
@@ -67,7 +68,7 @@ export function AboutWhatWeAimSection() {
               >
                 <div>
                   <h3 className={pillarTitleClass}>{objective.title}</h3>
-                  <p className={pillarBodyClass}>{objective.text}</p>
+                  <p className={pillarBodyClass}>{noWidow(objective.text)}</p>
                 </div>
               </ScrollReveal>
             ))}

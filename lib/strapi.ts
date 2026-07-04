@@ -10,7 +10,7 @@ import { internshipPositions } from "@/lib/site-data";
  *   so without pagination you only see the first 25 entries.
  *
  * Expected fields per entry (Strapi "API name"): title, slug, status, location,
- * company, duration, schedule, summary, description (long text), hubspotFormId (string).
+ * company, schedule, summary, description (long text), hubspotFormId (string).
  * Works with Strapi v4 `{ data: [{ id, attributes }] }` or v5-style flat `data` items.
  */
 export type Internship = {
@@ -20,7 +20,6 @@ export type Internship = {
   status: string;
   location?: string;
   company?: string;
-  duration?: string;
   schedule?: string;
   summary?: string;
   description?: string;
@@ -29,10 +28,16 @@ export type Internship = {
 
 const collection = process.env.STRAPI_INTERNSHIP_COLLECTION ?? "internships";
 
+/** Same host as README / deploy scripts when env vars are unset (e.g. local `npm run dev`). */
+const DEFAULT_STRAPI_URL = "https://strapi-production-7ecb.up.railway.app";
+
 function baseUrl() {
   const u =
-    process.env.STRAPI_URL?.trim() || process.env.NEXT_PUBLIC_STRAPI_URL?.trim();
-  return u ? u.replace(/\/$/, "") : "";
+    process.env.STRAPI_URL?.trim() ||
+    process.env.NEXT_PUBLIC_STRAPI_URL?.trim() ||
+    process.env.CONTENT_STRAPI_URL?.trim() ||
+    DEFAULT_STRAPI_URL;
+  return u.replace(/\/$/, "");
 }
 
 function authHeaders(): HeadersInit {
@@ -83,10 +88,11 @@ function mapEntry(raw: unknown, index: number): Internship | null {
     id,
     slug,
     title,
-    status: strInternshipStatus(readField(obj, "status")),
+    status: strInternshipStatus(
+      readField(obj, "internship_status") ?? readField(obj, "status"),
+    ),
     location: stringOrUndefined(readField(obj, "location")),
     company: stringOrUndefined(readField(obj, "company")),
-    duration: stringOrUndefined(readField(obj, "duration")),
     schedule: stringOrUndefined(readField(obj, "schedule")),
     summary: stringOrUndefined(readField(obj, "summary")),
     description: stringOrUndefined(readField(obj, "description")),
@@ -202,7 +208,6 @@ function localFallback(): Internship[] {
     status: p.status,
     location: p.location,
     company: p.company,
-    duration: p.duration,
     schedule: p.schedule,
     summary: p.summary,
     description: p.description,

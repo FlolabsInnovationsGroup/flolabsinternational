@@ -9,6 +9,7 @@ import { NavigationLoadingProvider } from "@/components/navigation-loading";
 import { getServerBrand } from "@/lib/branding";
 import { getSessionUser, markSessionUserVisited } from "@/lib/application-store";
 import Script from "next/script";
+import { siteMetadata } from "@/lib/site-metadata";
 
 export const dynamic = "force-dynamic";
 
@@ -22,14 +23,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "FloLabs International | Innovation in AI & Robotics",
-  description:
-    "FloLabs Innovations Group is an incubator launching innovative AI and robotics projects with experiential learning programs.",
-  icons: {
-    icon: "/flolabs-logo.svg",
-    shortcut: "/flolabs-logo.svg",
-    apple: "/flolabs-logo.svg",
-  },
+  ...siteMetadata,
   verification: {
     google: "q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg",
   },

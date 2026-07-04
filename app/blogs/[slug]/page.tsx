@@ -8,6 +8,7 @@ import {
   projectVisitSiteButtonClass,
 } from "@/components/project-panel";
 import { blogPosts } from "@/lib/site-data";
+import { noWidow } from "@/lib/typography";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -75,7 +76,7 @@ export default async function BlogDetailPage({ params }: Props) {
                       {article.title}
                     </h3>
                     {relatedPost ? (
-                      <p className="mt-2 text-lg leading-relaxed">{relatedPost.excerpt}</p>
+                      <p className="mt-2 text-lg leading-relaxed">{noWidow(relatedPost.excerpt)}</p>
                     ) : null}
                     <p className="mt-2 text-base opacity-80">{article.date}</p>
                   </Link>
@@ -88,7 +89,7 @@ export default async function BlogDetailPage({ params }: Props) {
         {post.ctaTitle && post.ctaText && post.ctaLabel && post.ctaHref ? (
           <>
             <ProjectPanel title={post.ctaTitle} className="[&_h2]:text-xl">
-              <p className="text-lg leading-relaxed">{post.ctaText}</p>
+              <p className="text-lg leading-relaxed">{noWidow(post.ctaText)}</p>
             </ProjectPanel>
             <div className="pt-1">
               <Link href={post.ctaHref} className={projectVisitSiteButtonClass}>

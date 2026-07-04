@@ -10,10 +10,10 @@ export const projectPanelHeroShellClass =
   "border border-border/55 bg-card/30 shadow-sm backdrop-blur-[6px] dark:border-white/16 dark:bg-[#061626]/45 dark:backdrop-blur-[6px] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]";
 
 export const projectPanelHeadingClass =
-  "text-base font-semibold uppercase leading-snug tracking-[0.2em] text-foreground dark:text-white [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-balance text-base font-semibold uppercase leading-snug tracking-[0.2em] text-foreground dark:text-white [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 export const projectPanelBodyClass =
-  "text-sm font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-pretty text-sm font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 export const projectDetailLinkClass =
   "inline-flex min-h-10 items-center justify-center border border-border bg-background px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-colors duration-200 hover:border-primary hover:bg-primary/8 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/50 dark:border-white/35 dark:bg-white/5 dark:text-white dark:hover:border-white/65 dark:hover:bg-white/15 dark:hover:text-white dark:focus-visible:outline-white/50";

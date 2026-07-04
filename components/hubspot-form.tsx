@@ -103,11 +103,11 @@ export function HubSpotForm({
   }, [portalId, formId, region, targetId]);
 
   return (
-    <div className="hubspot-form-wrapper">
+    <div className="hubspot-form-wrapper rounded-lg bg-white p-5 text-gray-900 shadow-sm sm:p-7">
       <div id={targetId} />
       {!loaded ? (
         <div className="py-8 text-center">
-          <p className="text-sm text-muted">Loading application form...</p>
+          <p className="text-sm text-gray-600">Loading application form...</p>
         </div>
       ) : null}
     </div>

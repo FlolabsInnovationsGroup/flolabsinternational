@@ -148,7 +148,6 @@ interface Internship {
   slug: string
   status: 'Open' | 'Closed' | 'Filled'
   location: string
-  duration?: string
   description: string
   requirements?: string
   responsibilities?: string

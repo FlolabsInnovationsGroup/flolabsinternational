@@ -5,6 +5,7 @@ import {
 } from "@/components/about/about-reveal-config";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { aboutMission } from "@/lib/site-data";
+import { noWidow } from "@/lib/typography";
 
 const FUTURE_BACKGROUND = "/about/future-background.png";
 const FUTURE_BACKGROUND_WIDTH = 1961;
@@ -13,7 +14,7 @@ const FLOLABS_INTERNATIONAL_LOGO =
   "/projects/icons/FloLabs_logo%20FloLabs%20International.svg";
 
 const missionBodyClass =
-  "text-sm font-normal leading-snug text-white/90 sm:text-base sm:leading-relaxed [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
+  "text-pretty text-sm font-normal leading-snug text-white/90 sm:text-base sm:leading-relaxed [font-family:var(--font-inter),Arial,Helvetica,sans-serif]";
 
 export function AboutMissionSection() {
   return (
@@ -43,7 +44,7 @@ export function AboutMissionSection() {
             <div>
               <h2
                 id="about-mission-heading"
-                className="text-[clamp(1rem,2.8vw,1.875rem)] font-bold uppercase leading-[1.08] tracking-[0.14em] text-white sm:tracking-[0.16em] [font-family:var(--font-inter),Arial,Helvetica,sans-serif]"
+                className="text-balance text-[clamp(1rem,2.8vw,1.875rem)] font-bold uppercase leading-[1.08] tracking-[0.14em] text-white sm:tracking-[0.16em] [font-family:var(--font-inter),Arial,Helvetica,sans-serif]"
               >
                 {aboutMission.headlineLead}{" "}
                 <span className="inline-block bg-white px-2 py-0.5 text-primary dark:text-[#00349b]">
@@ -57,7 +58,7 @@ export function AboutMissionSection() {
                     key={paragraph.slice(0, 48)}
                     className={`${missionBodyClass} text-[clamp(0.8125rem,1.6vw,1rem)]`}
                   >
-                    {paragraph}
+                    {noWidow(paragraph)}
                   </p>
                 ))}
               </div>

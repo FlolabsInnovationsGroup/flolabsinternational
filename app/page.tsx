@@ -3,6 +3,7 @@ import { HomeScene } from "@/components/home-scene";
 import { HomeSceneCtaLink } from "@/components/home-scene-cta-link";
 import { projectPanelHeroShellClass } from "@/components/project-panel";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { noWidow } from "@/lib/typography";
 import { methodology, projects, verticals } from "@/lib/site-data";
 
 const unsplash = (id: string) =>
@@ -11,7 +12,10 @@ const unsplash = (id: string) =>
 const homepageBg = (filename: string) => `/homepage/${filename}`;
 
 export default function Home() {
-  const featuredProjects = projects.slice(0, 5);
+  const featuredProjects = [
+    ...projects.slice(0, 5),
+    ...projects.filter((project) => project.slug === "cosmos-intelligence"),
+  ];
   const featuredNames = featuredProjects.map((p) => p.name).join(", ");
   const methodologyLine = methodology
     .map((item) => item.title.toLowerCase())
@@ -71,11 +75,11 @@ export default function Home() {
                 key={v.title}
                 className={`${projectPanelHeroShellClass} px-5 py-5 sm:px-6 sm:py-6`}
               >
-                <h3 className="text-base font-semibold uppercase leading-snug tracking-[0.2em] text-foreground dark:text-white [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
+                <h3 className="text-balance text-base font-semibold uppercase leading-snug tracking-[0.2em] text-foreground dark:text-white [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
                   {v.title}
                 </h3>
-                <p className="mt-3 text-sm font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
-                  {v.text}
+                <p className="mt-3 text-pretty text-sm font-normal leading-relaxed text-muted dark:text-white/82 [font-family:var(--font-inter),Arial,Helvetica,sans-serif]">
+                  {noWidow(v.text)}
                 </p>
               </div>
             ))}
@@ -91,14 +95,14 @@ export default function Home() {
         description={
           <>
             <p>
-              Learn about the latest trends in technology. We are learning about the future of AI,
-              robotics, education, and so much more. Every day is a great day to learn, and we want to
-              keep learning and expanding.
+              {noWidow(
+                "Learn about the latest trends in technology. We are learning about the future of AI, robotics, education, and so much more. Every day is a great day to learn, and we want to keep learning and expanding."
+              )}
             </p>
             <p>
-              FloLabs Innovations Group wants to prepare you for your own journey in your career. We
-              help you learn in the ways that work for you so you can achieve your goals and reach the
-              next level.
+              {noWidow(
+                "FloLabs Innovations Group wants to prepare you for your own journey in your career. We help you learn in the ways that work for you so you can achieve your goals and reach the next level."
+              )}
             </p>
           </>
         }

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Container, Section } from './layout'
 import { getVerticals, getSectionContent } from '@/lib/strapi'
+import { noWidow } from '@/lib/typography'
 
 export async function Verticals() {
   const verticals = await getVerticals()
@@ -38,7 +39,7 @@ export async function Verticals() {
                 {vertical.title}
               </h4>
               <p className="text-gray-700 text-sm leading-relaxed">
-                {vertical.description}
+                {noWidow(vertical.description)}
               </p>
             </div>
           ))}
