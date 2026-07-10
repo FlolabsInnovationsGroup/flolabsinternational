@@ -149,7 +149,7 @@ function SocialMediaSection() {
       <p className={columnHeadingClass}>Social media</p>
       <div className="mt-4 flex items-center gap-4">
         <a
-          href="https://www.youtube.com/@FloLabsInnovation"
+          href="https://www.youtube.com/@flolabsinnovation"
           className="inline-flex text-foreground transition-colors hover:text-primary"
           target="_blank"
           rel="noopener noreferrer"
@@ -165,6 +165,15 @@ function SocialMediaSection() {
           aria-label="FloLabs on LinkedIn"
         >
           <LinkedInIcon />
+        </a>
+        <a
+          href="https://www.facebook.com/people/Flo-Labs-RD/61572285432918/"
+          className="inline-flex text-foreground transition-colors hover:text-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="FloLabs on Facebook"
+        >
+          <FacebookIcon />
         </a>
         <a
           href="https://www.instagram.com/flolabsinnovations/"
@@ -325,7 +334,7 @@ function LinkedInIcon() {
   );
 }
 
-function InstagramIcon() {
+function FacebookIcon() {
   return (
     <svg
       aria-hidden="true"
@@ -333,7 +342,26 @@ function InstagramIcon() {
       className="h-6 w-6"
       fill="currentColor"
     >
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.055 1.805.249 2.227.415.56.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227a3.81 3.81 0 0 1-.896 1.382 3.744 3.744 0 0 1-1.382.896c-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421a3.716 3.716 0 0 1-1.379-.899 3.644 3.644 0 0 1-.9-1.381c-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.359-.94.945-1.4.9-1.379a3.706 3.706 0 0 1 1.379-.9c.42-.165 1.051-.36 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.905A5.932 5.932 0 0 0 6.063 12 5.932 5.932 0 0 0 12 17.938 5.932 5.932 0 0 0 17.938 12 5.932 5.932 0 0 0 12 6.068zm0 9.79A3.858 3.858 0 0 1 8.142 12 3.858 3.858 0 0 1 12 8.142 3.858 3.858 0 0 1 15.858 12 3.858 3.858 0 0 1 12 15.858zm7.564-10.049a1.386 1.386 0 1 1-2.771 0 1.386 1.386 0 0 1 2.771 0z" />
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none" />
     </svg>
   );
 }
