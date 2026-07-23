@@ -26,18 +26,78 @@ export type Internship = {
   hubspotFormId?: string;
 };
 
-const collection = process.env.STRAPI_INTERNSHIP_COLLECTION ?? "internships";
+const collection =
+  process.env.STRAPI_INTERNSHIP_COLLECTION?.trim() || "internships";
 
 /** Same host as README / deploy scripts when env vars are unset (e.g. local `npm run dev`). */
 const DEFAULT_STRAPI_URL = "https://strapi-production-7ecb.up.railway.app";
 
+/**
+ * Normalize CMS base URL from env. Common Vercel mistakes that break `fetch`:
+ * - missing `https://`
+ * - surrounding quotes copied from docs
+ * - trailing slash / whitespace / newlines
+ */
+function normalizeStrapiBaseUrl(raw: string | undefined | null): string | null {
+  if (!raw) return null;
+  let u = raw.trim().replace(/^['"]|['"]$/g, "").trim();
+  if (!u) return null;
+
+  if (!/^https?:\/\//i.test(u)) {
+    u = `https://${u}`;
+  }
+
+  try {
+    const parsed = new URL(u);
+    if (!parsed.hostname) return null;
+    return `${parsed.protocol}//${parsed.host}`;
+  } catch {
+    return null;
+  }
+}
+
 function baseUrl() {
-  const u =
+  const configured =
     process.env.STRAPI_URL?.trim() ||
     process.env.NEXT_PUBLIC_STRAPI_URL?.trim() ||
     process.env.CONTENT_STRAPI_URL?.trim() ||
-    DEFAULT_STRAPI_URL;
-  return u.replace(/\/$/, "");
+    "";
+
+  const normalized = normalizeStrapiBaseUrl(configured);
+  if (normalized) return normalized;
+
+  if (configured) {
+    console.warn(
+      `[strapi] invalid STRAPI URL env value ${JSON.stringify(configured)}; falling back to default`,
+    );
+  }
+
+  return DEFAULT_STRAPI_URL;
+}
+
+/** Hostname-only debug helper (avoids dumping full secrets in responses). */
+export function getStrapiDebugInfo() {
+  const configuredRaw =
+    process.env.STRAPI_URL?.trim() ||
+    process.env.NEXT_PUBLIC_STRAPI_URL?.trim() ||
+    process.env.CONTENT_STRAPI_URL?.trim() ||
+    null;
+  const resolved = baseUrl();
+  let hostname: string | null = null;
+  try {
+    hostname = new URL(resolved).hostname;
+  } catch {
+    hostname = null;
+  }
+  return {
+    usingDefaultUrl: !normalizeStrapiBaseUrl(configuredRaw),
+    strapiHost: hostname,
+    strapiBase: resolved,
+    strapiBaseValid: Boolean(hostname),
+    configuredLooksInvalid: Boolean(configuredRaw && !normalizeStrapiBaseUrl(configuredRaw)),
+    hasApiToken: Boolean(process.env.STRAPI_API_TOKEN?.trim()),
+    collection: process.env.STRAPI_INTERNSHIP_COLLECTION?.trim() || "internships",
+  };
 }
 
 function authHeaders(includeToken = true): HeadersInit {
