@@ -40,13 +40,47 @@ function baseUrl() {
   return u.replace(/\/$/, "");
 }
 
-function authHeaders(): HeadersInit {
+function authHeaders(includeToken = true): HeadersInit {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };
-  const token = process.env.STRAPI_API_TOKEN?.trim();
+  const token = includeToken ? process.env.STRAPI_API_TOKEN?.trim() : undefined;
   if (token) headers.Authorization = `Bearer ${token}`;
   return headers;
+}
+
+/**
+ * Public Strapi collections work without a token. An expired/invalid
+ * STRAPI_API_TOKEN on Vercel previously caused 401 → empty internship lists.
+ */
+async function fetchStrapiJson(url: string): Promise<{ ok: boolean; status: number; json: unknown }> {
+  const tryOnce = async (includeToken: boolean) => {
+    const res = await fetch(url, {
+      headers: authHeaders(includeToken),
+      next: { revalidate: 60 },
+    });
+    let json: unknown = null;
+    try {
+      json = await res.json();
+    } catch {
+      json = null;
+    }
+    return { ok: res.ok, status: res.status, json };
+  };
+
+  const hasToken = Boolean(process.env.STRAPI_API_TOKEN?.trim());
+  const first = await tryOnce(true);
+  if (first.ok) return first;
+
+  if (hasToken && (first.status === 401 || first.status === 403)) {
+    console.warn(
+      `[strapi] ${first.status} with STRAPI_API_TOKEN; retrying public request without auth`,
+    );
+    return tryOnce(false);
+  }
+
+  console.warn(`[strapi] request failed ${first.status} for ${url}`);
+  return first;
 }
 
 function readField(obj: Record<string, unknown>, key: string): unknown {
@@ -150,13 +184,10 @@ async function fetchStrapiList(): Promise<Internship[]> {
       qs.set("pagination[pageSize]", String(pageSize));
 
       const url = `${root}/api/${collection}?${qs.toString()}`;
-      const res = await fetch(url, {
-        headers: authHeaders(),
-        next: { revalidate: 60 },
-      });
+      const res = await fetchStrapiJson(url);
       if (!res.ok) break;
 
-      const json: unknown = await res.json();
+      const json = res.json;
       const list = extractList(json);
 
       for (let i = 0; i < list.length; i++) {
@@ -186,13 +217,9 @@ async function fetchStrapiOneBySlug(slug: string): Promise<Internship | null> {
   const enc = encodeURIComponent(slug);
   const url = `${root}/api/${collection}?filters[slug][$eq]=${enc}&populate=*`;
   try {
-    const res = await fetch(url, {
-      headers: authHeaders(),
-      next: { revalidate: 60 },
-    });
+    const res = await fetchStrapiJson(url);
     if (!res.ok) return null;
-    const json: unknown = await res.json();
-    const list = extractList(json);
+    const list = extractList(res.json);
     const first = list[0];
     return first ? mapEntry(first, 0) : null;
   } catch {
