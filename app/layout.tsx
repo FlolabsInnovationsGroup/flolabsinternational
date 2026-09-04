@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Geist, Geist_Mono, Inter } from "next/font/google";
 import Script from "next/script";
 
@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { BrandProvider } from "@/components/brand-provider";
 import { NavigationLoadingProvider } from "@/components/navigation-loading";
+import { PreferredSourceChip } from "@/components/preferred-source-chip";
 
 import { getServerBrand } from "@/lib/branding";
 import {
@@ -48,6 +49,12 @@ export const metadata: Metadata = {
   verification: {
     google: "q7Iz4hswuM51RriyDBt8nxz3kLPZcUDl5vvsm-k6IYg",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default async function RootLayout({
@@ -140,6 +147,7 @@ export default async function RootLayout({
               </main>
 
               <SiteFooter />
+              <PreferredSourceChip />
             </BrandProvider>
           </NavigationLoadingProvider>
         </ThemeProvider>

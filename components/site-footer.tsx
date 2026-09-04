@@ -2,6 +2,8 @@ import { Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { PreferredSourceFooterLink } from "@/components/preferred-source-button";
+
 const footerLinkClass =
   "text-[15px] text-foreground transition-colors hover:text-primary";
 
@@ -203,6 +205,7 @@ function SocialMediaSection() {
           <RedditIcon />
         </a>
       </div>
+      <PreferredSourceFooterLink className="mt-5 w-fit" />
     </div>
   );
 }
