@@ -1,6 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { HomeScene } from "@/components/home-scene";
-import { HubSpotForm } from "@/components/hubspot-form";
+import { CrmApplicationForm } from "@/components/crm-application-form";
 import {
   InternshipContentBlocks,
   InternshipListItems,
@@ -142,11 +142,7 @@ export default async function InternshipDetailPage({
           </p>
 
           <div className="mt-6">
-            {internship.hubspotFormId ? (
-              <HubSpotForm key={internship.slug} formId={internship.hubspotFormId} />
-            ) : (
-              <p className={bodyClass}>No application form is linked to this role yet.</p>
-            )}
+            <CrmApplicationForm />
           </div>
         </section>
       </div>

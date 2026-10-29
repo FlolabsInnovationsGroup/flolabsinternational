@@ -144,11 +144,6 @@ export default async function RootLayout({
           </NavigationLoadingProvider>
         </ThemeProvider>
 
-        <Script
-          id="hubspot-forms"
-          src="//js.hsforms.net/forms/embed/v2.js"
-          strategy="lazyOnload"
-        />
       </body>
     </html>
   );
